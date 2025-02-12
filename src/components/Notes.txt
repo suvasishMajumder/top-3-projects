@@ -1,0 +1,30 @@
+
+
+
+tomorrow:
+
+1) make product database --- Done
+
+2) set the auth (email + password and firebase)  --- Done
+
+
+Day fater tomorrow:
+
+1) Email.js
+
+2) Full scale accessibility
+
+3) cart 
+
+
+
+--Now UI should be enhanced with accessible color contrast
+--More Responsiveness
+--Email.js implementation
+--More page desinging
+--Making Re-usable Buttons
+--Making the images Ordred 
+
+Then move to the Next Project
+
+

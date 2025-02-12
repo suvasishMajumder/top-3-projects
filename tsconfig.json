@@ -1,0 +1,77 @@
+// {
+//   "files": [],
+//   "references": [
+//     { "path": "./tsconfig.app.json" },
+//     { "path": "./tsconfig.node.json" }
+//   ],
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     }
+//   }
+// }
+
+
+//New Update:
+
+
+// {
+//   "files": [],
+//   "references": [
+//     { "path": "./tsconfig.app.json" },
+//     { "path": "./tsconfig.node.json" }
+//   ],
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     },
+//     "target": "ESNext",                      // Modern JavaScript features
+//     "module": "ESNext",                      // Support for ES modules
+//     "jsx": "react-jsx",                      // Enable JSX for React
+//     "strict": true,                          // Enable all strict type-checking options
+//     "esModuleInterop": true,                 // Interoperability between CommonJS and ES modules
+//     "moduleResolution": "node",             // Use Node-style module resolution
+//     "skipLibCheck": true,                    // Skip checking declaration files for performance
+//     "forceConsistentCasingInFileNames": true, // Enforce file name casing consistency
+//     "resolveJsonModule": true,               // Enable importing JSON files
+//     "allowSyntheticDefaultImports": true,    // Allow default imports from modules with no default export
+//     "isolatedModules": true,                 // Ensure each file can be safely transpiled without relying on other files
+//     "noEmit": true                           // Prevent emitting compiled files
+//   },
+//   "include": ["src"],                        // Include the source folder for compilation
+//   "exclude": ["node_modules", "dist"]       // Exclude node_modules and build output folders
+// }
+
+
+
+//Latest Update: 12/28/2024
+
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
