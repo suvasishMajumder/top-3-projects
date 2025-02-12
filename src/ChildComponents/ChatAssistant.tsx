@@ -40,7 +40,7 @@ async function generateAnswers(){
 
 const response = await  axios({
 
-    url:'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBpi7LH5hM1dGoho0fOtUopEE7KaluxB6o',
+    url: import.meta.env.VITE_GEMINI_API_URL,
     method:'POST',
     data:{
       "contents": [{
