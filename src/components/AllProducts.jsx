@@ -141,7 +141,7 @@ if(loading){
     <>
     
 
-<div className="container  bg-[#007025] min-w-[100vw] ">
+<div className="container  bg-[#007025] min-w-[100vw] pb-32">
 
     {/* Text Product Search */}
 <div className={` textSearch ${isTextSearchVisible ? 'block' : 'hidden'}  w-[100vw] overflow-x-hidden h-24 bg-sky-400  flex justify-center items-center `}>

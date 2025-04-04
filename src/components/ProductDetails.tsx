@@ -1,10 +1,9 @@
 
 
-import { rawDatacosmetics } from '@/assets/rawData'
-import { WishListContext } from '@/Contexts/WishListContext';
+
 import { auth } from '@/Firebase/Firebase';
 import { arrayUnion, doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore';
-import { Divide } from 'lucide-react';
+
 import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
 import { useLocation } from 'react-router-dom';
@@ -25,7 +24,7 @@ const {  id,  img, name, price, gluten_free, category } = product;
 //
 
 
-const {products,setProducts} = useContext(WishListContext)
+
 
 
 

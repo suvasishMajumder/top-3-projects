@@ -26,7 +26,7 @@ const Wishlist = () => {
 
 
 
-    <div className='mx-auto min-h-[100vh] w-[100vw] my-20 flex justify-center items-center flex-wrap gap-14 sm:gap-8 md:gap-5'>
+    <div className='mx-auto min-h-[100vh] w-[100vw]  flex justify-center items-center flex-wrap gap-14 sm:gap-8 md:gap-5'>
      
 {
 

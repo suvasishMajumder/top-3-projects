@@ -108,8 +108,10 @@ const Product: React.FC<PropsType> = ({ id, img, name, price, gluten_free, categ
     }
 
     try {
+
       const userCartRef = doc(getFirestore(), 'cartProducts', user.uid); // Firestore document reference for user's cart
       const userCartSnap = await getDoc(userCartRef);
+    
 
       // Prepare the product data to add to cart
       const productData = {
@@ -264,7 +266,7 @@ toast.success(`The Item ${name} got added to Wishlist`);
         See Details
       </Link>
 
-        {/* When you click on the See Details link, only then the state will be passed to the ProductDetails component. */}
+        {/* here ,  When I will click on the See Details link, only then the state will be passed to the ProductDetails component. */}
     </div>
   
     <p className="text-sm text-[#8B4513]">

@@ -187,7 +187,7 @@ focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2
   }
 
   return (
-    <div className="h-auto  text-center flex flex-col justify-between items-center space-y-5 ">
+    <div className="h-auto  text-center flex flex-col justify-between items-center space-y-5 pb-32">
       <h2 className="text-xl font-bold text-green-700 ">Your Cart</h2>
 
       {/* For debugging */}

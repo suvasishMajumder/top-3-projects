@@ -111,11 +111,11 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
 } from "../components/ui/dropdown-menu";
-import Cart from './Cart';
-import Wishlist from './Wishlist';
+
+
 import { useAuthHook } from '@/Contexts/AuthContext';
 import Logout from './Logout';
-import AllProducts from './AllProducts';
+
 
 
 
@@ -191,6 +191,12 @@ const Navbar = () => {
                   to="/about"
                   className={({ isActive }) => isActive ? "text-blue-700 md:text-blue-700 dark:text-blue-500" : "text-gray-900 dark:text-white"}
                 >About Us</NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/faq"
+                  className={({ isActive }) => isActive ? "text-blue-700 md:text-blue-700 dark:text-blue-500" : "text-gray-900 dark:text-white"}
+                >FAQs</NavLink>
               </li>
               {/* <li>
 

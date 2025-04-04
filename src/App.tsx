@@ -91,7 +91,7 @@ import Blogs from './ChildComponents/Blogs';
 
 import ChatAssistant from './ChildComponents/ChatAssistant';
 import Error404 from './components/Error404';
-
+import FaQ from './components/FaQ';
 
 
 
@@ -225,6 +225,18 @@ element:(
         <>
           <Navbar />
           <AllProducts />
+          <Footer />
+      
+        </>
+      ),
+    },
+    
+    {
+      path: "/faq",
+      element: (
+        <>
+          <Navbar />
+          <FaQ />
           <Footer />
       
         </>
