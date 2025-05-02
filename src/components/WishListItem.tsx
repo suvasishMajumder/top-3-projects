@@ -2,12 +2,12 @@
 
 
 import { WishListContext } from '@/Contexts/wishListContext'
-import React, { useContext } from 'react'
+import React, { memo, useContext } from 'react'
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 
-const WishListItem = ({  id , img, name , price ,gluten_free , category}) => {
+const WishListItem = ({  id , img, name , price , gluten_free , category}) => {
 
 const {products, setProducts } = useContext(WishListContext);
 
@@ -21,27 +21,20 @@ const handleDelete = () =>{
 
 
   return (
+    <>
     <div className='h-[29rem] rounded-xl shadow-lg cursor-pointer bg-[#007025]   w-60 sm:w-80 flex
     hover:shadow-2xl transition-all justify-center flex-col space-y-3 p-2'>
     <img
       src={img}
       alt={name}
       className="h-[50%] mt-0 rounded-lg shadow-lg object-contain bg-white"
+      loading='lazy'
     />
     <h4 className="text-lg text-[#e0ffe8] font-semibold">{name}</h4>
   
     <div className="w-full space-x-10 p-3 flex justify-between items-center">
       <p className="text-sm text-[#e0ffe8]">₹&nbsp;{price}</p>
-      {/* <a
-        href=""
-        onClick={(e) => e.preventDefault()}
-        className="text-sm px-6 py-2 bg-[#54b9e0] hover:bg-blue-500 font-semibold text-white underline rounded-md"
-      >
-        See Details
-      </a> */}
-
-
-{/* Link */}
+    
 
 
 <Link
@@ -75,7 +68,8 @@ const handleDelete = () =>{
 
  
   </div>
+  </>
   )
 }
 
-export default WishListItem
+export default memo(WishListItem);

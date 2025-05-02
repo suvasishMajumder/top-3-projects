@@ -8,9 +8,11 @@ const User = () => {
 const params = useParams();
 
   return (
+    <>
     <div>
       I am a User{params.username}
     </div>
+    </>
   )
 }
 

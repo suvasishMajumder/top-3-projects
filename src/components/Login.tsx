@@ -6,7 +6,7 @@
 import { useAuthHook } from '@/Contexts/AuthContext';
 import { auth, googleProvider } from '@/Firebase/Firebase';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,10 +14,11 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const {isSignedIn , setIsSignedIn} = useAuthHook();
+    // const {isSignedIn , setIsSignedIn} = useAuthHook();
+    const {isSignedIn } = useAuthHook();
     const [email,setEmail] = useState('');
 
-
+// console.log('Login cmponent re-rendered')
     const [password,setPassword] = useState('')
 
 
@@ -41,12 +42,13 @@ try{
 await signInWithPopup(auth,googleProvider);
 
 toast.success('You are successfully signed In with Google');
-console.log('You are successfully signed In with Google');
+// console.log('You are successfully signed In with Google');
 navigate('/')
 
 }catch(error){
 
-console.log('Error Sign In with google:',error);
+// console.log('Error Sign In with google:',error);
+toast.error('Error Sign In with google:');
 toast.error('Sorry ! Cannot be signed In');
 
 }
@@ -65,9 +67,11 @@ toast.error('Sorry ! Cannot be signed In');
     try {
       const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log('====================================');
-      console.log(userCredential);
-      console.log('====================================');
+
+      //For debugging only
+      // console.log('====================================');
+      // console.log(userCredential);
+      // console.log('====================================');
       toast.success('You are successfully logged in with Email and Password');
       // setIsSignedIn(true); // Update state to indicate the user is logged in
       navigate('/');
@@ -79,16 +83,18 @@ toast.error('Sorry ! Cannot be signed In');
       } else {
         toast.error('An error occurred. Please try again.');
       }
-      console.error('Error while logging in:', error);
+      // console.error('Error while logging in:', error);
+      toast.error('Error Logging In');
     }
   };
   
 
 
   return (
+    <>
     <div className='min-h-screen min-w-full max-h-[100vh] overflow-y-hidden max-w-[100vw] bg-gray-900
      flex justify-center items-center '>
-      <div className="loginBox w-full h-full sm:h-[38rem] sm:w-[28rem] flex flex-col
+      <div className="loginBox   w-3/4 h-full sm:h-[38rem] sm:w-[28rem] flex flex-col
        items-center justify-center
        rounded-md bg-gray-700 space-y-10 py-8">
 
@@ -122,7 +128,7 @@ required/>
 <button onClick={() => signInNormally()} type="button" className="text-white
  bg-blue-700 hover:bg-blue-800 
 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full
- text-sm px-24 sm:px-36 py-4 text-center me-2 mb-2 dark:bg-blue-600
+ text-sm px-16 sm:px-36 py-4 text-center me-2 mb-2 dark:bg-blue-600
   dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
 
 <hr  className='bg-white h-[0.5px] w-full'/>
@@ -143,6 +149,7 @@ focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full
 
       </div>
     </div>
+    </>
   )
 }
 

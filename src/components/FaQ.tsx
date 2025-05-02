@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import { ThemeContext } from "@/Contexts/ThemeContext";
+import React, { useContext, useMemo, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 
@@ -10,6 +11,8 @@ interface FaqItem {
 
 const FaQ: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<{ [key: number]: boolean }>({});
+
+const {theme } = useContext(ThemeContext)
 
   const handleFaqBar = (index: number) => {
     setOpenFaq((prev) => ({
@@ -229,13 +232,17 @@ const FaQ: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen space-y-16 select-none max-w-screen bg-gray-100 flex flex-col items-center">
+
+    <>
+    <div className={`min-h-screen space-y-16 select-none max-w-screen 
+    ${theme === 'light' ? 'bg-gray-100 text-black' : 'bg-gray-950 text-white'} flex flex-col items-center`}>
 
 <div className="faq-header font-extrabold text-5xl text-center mt-10">Frequently Asked Questions (FAQ) </div>
 
-      <div className="w-4/5 text-black h-auto space-y-1.5">
+      <div className="w-4/5  text-black h-auto space-y-1.5">
         {faqdata.map((item: FaqItem, index: number) => (
-          <div key={index} onClick={() => handleFaqBar(index)} className={`border-[2px] p-3 transition-transform cursor-pointer  border-gray-900`}>
+          <div key={index} onClick={() => handleFaqBar(index)} className={`border-[2px]  p-3 transition-transform
+           cursor-pointer ${theme === 'light' ? 'text-black border-gray-900' : 'text-white border-gray-100'} `}>
             <h3 className="text-xl font-bold">{item.Question}</h3>
             <IoIosArrowDown className={`${openFaq[index] ? 'rotate-180' : 'rotate-none'}`}  />
             <p className={`${openFaq[index] ? 'block ' : 'hidden'}`}>{item.Answer}</p>
@@ -249,6 +256,7 @@ const FaQ: React.FC = () => {
 </div>
 
     </div>
+    </>
   );
 };
 

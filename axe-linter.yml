@@ -1,0 +1,49 @@
+# axe-linter.yml
+# ---------------
+# Available severities: off, warn, error
+
+rules:
+  # === Critical Errors ===
+  # Images must have alt text
+  image-alt: error
+
+  # Form controls must have accessible labels
+  label: error
+
+  # Links must have discernible text
+  link-name: error
+
+  # Heading structure must be semantic and sequential
+  heading-order: error
+
+  # === Serious Warnings ===
+  # Color contrast against background
+  color-contrast: warn
+
+  # Buttons, inputs, and links should have focus styles
+  focus-order: warn
+
+  # ARIA attributes must be valid
+  aria-allowed-attr: warn
+  aria-required-attr: warn
+
+  # === Best-Practice / Optional ===
+  # Page must have a title element
+  page-has-title: warn
+
+  # Landmark regions (header, main, footer) should be present
+  region: warn
+
+  # Allow skipping tests for now
+  skip-link: off
+
+  # Don’t enforce every aria-* attribute yet
+  aria-roles: off
+
+globalOptions:
+  # If you need to tweak axe-core itself,
+  # you can pass options here
+  runOnly:
+    type: tag
+    values:
+      - wcag2aa

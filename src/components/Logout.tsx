@@ -17,7 +17,7 @@ toast.success('Successfully Logged Out')
 
 
 } catch (error) {
-    console.log('Cannot sign out: ',error);
+    // console.log('Cannot sign out: ',error);
     toast.error('Cannot sign out:')
 }
 

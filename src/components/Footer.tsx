@@ -27,7 +27,8 @@ const Footer = () => {
     }
 
   return (
-    <footer className="bg-gray-900 mb-0 text-white py-12">
+    <>
+        <footer className="bg-gray-900 mb-0 text-white py-12">
       <div className="container mx-auto px-4">
         {/* Newsletter Subscription */}
         <div className="flex flex-col lg:flex-row justify-between items-start mb-8">
@@ -44,7 +45,7 @@ const Footer = () => {
                 className="p-2 w-full lg:w-auto rounded-l-md bg-gray-800 text-white"
                 required
               />
-              <button onClick={()=>validateEmail()} className="bg-green-500 text-white px-4 py-2 rounded-r-md">Subscribe</button>
+              <button onClick={()=>validateEmail()} className="bg-[#105C2B] text-white px-4 py-2  rounded-r-md">Subscribe</button>
             </div>
             <p className="mt-2 text-green-400">{emailConfirm}</p>
           </div>
@@ -93,6 +94,8 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </>
+
   );
 };
 

@@ -1,7 +1,7 @@
 
 
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { auth } from "../Firebase/Firebase"; // Adjust the import based on your project structure
 
 
@@ -26,11 +26,11 @@ setProducts:React.Dispatch<React.SetStateAction<Product[]>>
 }
 
 
+
 export const WishListContext = createContext<wishlistcontextType>({
 
 products:[],
 setProducts:() =>{},
-
 
 
 })
@@ -59,7 +59,7 @@ This function is only executed during the initial render to set the initial stat
 
 
 
-
+                                                                      
 );
 
 

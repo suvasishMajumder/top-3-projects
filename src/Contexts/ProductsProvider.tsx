@@ -3,15 +3,17 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { collection, onSnapshot } from 'firebase/firestore'; // Import onSnapshot
 import { database } from '@/Firebase/Firebase';
-import { rawDataFoodandDrinks } from '@/assets/rawData';
+
 
 interface ProductType {
+  FT: boolean;
   id: string;
   img: string;
   category: string;
   price: number;
   name: string;
   gluten_free: boolean;
+
 }
 
 const ProductsContext = createContext<{products: ProductType[];loading: boolean;}>({
@@ -21,7 +23,13 @@ const ProductsContext = createContext<{products: ProductType[];loading: boolean;
   loading: true,
 });
 
-export const ProductsProvider: React.FC = ({ children }) => {
+//befroe changes made: export const ProductsProvider: React.FC = ({ children }) => {
+
+interface ProductsProviderProps {
+  children: React.ReactNode;
+}
+
+export const ProductsProvider: React.FC<ProductsProviderProps> = ({ children }) => {
 
   //This is the actual state which is local to this ProductsProvider function and can update the state dynamically
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -35,19 +43,21 @@ export const ProductsProvider: React.FC = ({ children }) => {
     const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
       const productsArray = snapshot.docs.map((doc) => {
 
+   
         const data = doc.data();
-        // const imageData = rawDataFoodandDrinks.find((item) => item.id === doc.id);
-
+  
         return {
-          id: doc.id,
-          img: '',
+          id: data.id,
+          img: data.img ,
           category: data.category || 'Unknown category',
           gluten_free: data.gluten_free || false,
           name: data.name || 'No Name available',
           price: data.price || 0,
+          FT:data.FT ,
         };
       });
 
+      // console.log(productsArray)
       setProducts(productsArray); // Update products state
       setLoading(false); // Set loading to false after data is received
     });

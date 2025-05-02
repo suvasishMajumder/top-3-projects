@@ -1,9 +1,9 @@
 
 
-import veganGift from './pictures/veganGift.jpg'
-import veganIndia from './pictures/veganIndia.jpg'
-import veganWoman from './pictures/veganWoman.jpg'
-import blackVegan from './pictures/blackVegan.jpg'
+import veganGift from './pictures/veganGift.webp'
+import veganIndia from './pictures/veganIndia.webp'
+import veganWoman from './pictures/veganWoman.webp'
+import blackVegan from './pictures/blackVegan.webp'
 
 const veganBlogData = [
   {

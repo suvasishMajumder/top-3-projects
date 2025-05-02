@@ -1,9 +1,17 @@
-import React from 'react'
-import img1 from '../assets/special_images/hero_1.jpg'
-import img2 from '../assets/special_images/hero_2.jpg' // ensure unique images for each
-import img3 from '../assets/special_images/hero_3.jpg'
-import img4 from '../assets/special_images/hero_4.jpg'
-import img5 from '../assets/special_images/hero_5.jpg'
+import React, { memo, useMemo } from "react";
+import img1 from "../assets/special_images/hero_1.webp";
+import img2 from "../assets/special_images/hero_2.webp"; // ensure unique images for each
+import img3 from "../assets/special_images/hero_3.webp";
+import img4 from "../assets/special_images/hero_4.webp";
+import img5 from "../assets/special_images/hero_5.webp";
+
+
+//new code starts
+
+
+import Autoplay from "embla-carousel-autoplay"
+
+// import { Card, CardContent } from "../components/ui/card"
 
 import {
   Carousel,
@@ -11,39 +19,100 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-} from "../components/ui/carousel";
+} from "@/components/ui/carousel";
 
-const Hero = () => {
-  return (
-    <Carousel className="relative mx-auto w-[90vw] h-[70vh] mt-10 overflow-hidden">
-      {/* Carousel Controls */}
-      <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10" />
-      <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10" />
-
-      {/* Carousel Slides */}
-      <CarouselContent className="flex h-[70vh]">
-        <CarouselItem className="flex  justify-center items-center p-4">
-          <img src={img1} alt="Slide 1" className="object-contain w-full h-auto rounded-lg" />
-        </CarouselItem>
-
-        <CarouselItem className="flex justify-center items-center p-4">
-          <img src={img2} alt="Slide 2" className="object-contain w-full h-auto rounded-lg" />
-        </CarouselItem>
-
-        <CarouselItem className="flex justify-center items-center p-4">
-          <img src={img3} alt="Slide 3" className="object-contain w-full h-auto rounded-lg" />
-        </CarouselItem>
-
-        <CarouselItem className="flex justify-center items-center p-4">
-          <img src={img4} alt="Slide 4" className="object-contain w-full h-auto rounded-lg" />
-        </CarouselItem>
-
-        <CarouselItem className="flex justify-center items-center p-4">
-          <img src={img5} alt="Slide 5" className="object-contain w-full h-auto rounded-lg" />
-        </CarouselItem>
-      </CarouselContent>
-    </Carousel>
-  )
+export function CarouselPlugin() {
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
 }
 
-export default Hero
+
+//new code ends
+
+ 
+
+// hero 1: 1280 x 853 
+
+// hero 2: 1280 x 853 
+
+// hero 3: 5184 x 3456
+
+// hero 4: 6000 x 4000
+
+// hero 5: 8192 x 4608
+
+const Hero = () => {
+
+  const carouselItemArray = useMemo(() => 
+    [
+      {
+        img: img1,
+        height:1280,
+        width:853
+      },
+      {
+        img: img2,
+        height:1280,
+        width:853
+      },
+      {
+        img: img3,
+        height:5184,
+        width:3456
+      },
+      {
+        img: img4,
+        height:6000,
+        width:4000
+      },
+      {
+        img: img5,
+        height:8192,
+        width:4608
+      },
+    ]
+  , []);
+
+
+  return (
+   
+<>
+        <Carousel
+        plugins={[
+          Autoplay({
+            delay: 2000,
+          }),
+        ]}
+        className="relative mx-auto w-[90vw] h-[70vh] mt-10 overflow-hidden" >
+          <CarouselContent className="flex h-[70vh]">
+
+
+{
+
+carouselItemArray.map((item,index) =>{
+return (
+
+    <CarouselItem key={index} className="flex justify-center object-cover items-center p-4">
+         <img
+            src={item.img}
+            width={item.width}
+            height={item.height}
+          alt="Slide 1"
+           className="object-contain w-full min-h-96 h-auto rounded-lg"
+         />
+      </CarouselItem>
+
+)})
+}
+
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+        </>
+      )
+    }
+
+
+export default memo(Hero);

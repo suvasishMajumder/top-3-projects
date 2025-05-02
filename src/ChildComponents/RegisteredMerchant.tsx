@@ -3,9 +3,98 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import emailjs from "emailjs-com";
-import { useState } from "react";
-import srct from "../assets/video/waterBubble.mp4";
+import { lazy, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+
+// Import or define the flag variables
+import flag1 from "../assets/flags/australia.png";
+import flag2 from "../assets/flags/canada.png";
+import flag3 from "../assets/flags/european-union.png";
+import flag4 from "../assets/flags/india.png";
+import flag5 from "../assets/flags/malayshia.png";
+import flag6 from "../assets/flags/nz.png";
+import flag7 from "../assets/flags/russia.png";
+import flag8 from "../assets/flags/singapore.png";
+import flag9 from "../assets/flags/uruguay.png";
+import flag10 from "../assets/flags/united-arab-emirates.png";
+import flag11 from "../assets/flags/united-kingdom.png";
+import flag12 from "../assets/flags/united-states.png";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
+import Autoplay from "embla-carousel-autoplay";
+import { ThemeContext, ThemeProvider } from "@/Contexts/ThemeContext";
+// import ThemeToggler from '../resusable_components/ThemeToggler'
+const ThemeToggler = lazy(()=>import('../resusable_components/ThemeToggler'))
+
+
+export default function RegisteredMerchant() {
+
+  const {theme } = useContext(ThemeContext);
+
+  const flags = useMemo(() => [
+    {
+      id: 1,
+      flag: flag1,
+      country: 'Australia'
+    },
+    {
+      id: 2,
+      flag: flag2,
+      country: 'Canada'
+    },
+    {
+      id: 3,
+      flag: flag3,
+      country: 'European Union'
+    },
+    {
+      id: 4,
+      flag: flag4,
+      country: 'India'
+    },
+    {
+      id: 5,
+      flag: flag5,
+      country: 'Malaysia'
+    },
+    {
+      id: 6,
+      flag: flag6,
+      country: 'New Zealand'
+    },
+    {
+      id: 7,
+      flag: flag7,
+      country: 'Russia'
+    },
+    {
+      id: 8,
+      flag: flag8,
+      country: 'Singapore'
+    },
+    {
+      id: 9,
+      flag: flag9,
+      country: 'Uruguay'
+    },
+    {
+      id: 10,
+      flag: flag10,
+      country: 'UAE'
+    },
+    {
+      id: 11,
+      flag: flag11,
+      country: 'United Kingdom'
+    },
+    {
+      id: 12,
+      flag: flag12,
+      country: 'United States'
+    },
+  ], []);
+
 
 type FormData = {
   firstName: string;
@@ -15,7 +104,7 @@ type FormData = {
   description: string;
 };
 
-export default function RegisteredMerchant() {
+
 
 const navigate = useNavigate();
 
@@ -57,16 +146,62 @@ const navigate = useNavigate();
       reset(); // Reset form after successful submission
       navigate('/')
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       toast.error("Sorry! Email could not be sent");
     }
   };
 
+
+  
+
+  // const handleChangeTheme = () =>{
+
+  //   toggleTheme();
+
+  // }
+
   return (
 
-    <div className="h-[150vh] min-w-[100vw] shadow-2xl bg-[#007025] flex justify-center items-center">
-    
-    <div className="h-4/5 p-5 md:w-4/6 lg:w-[40%] xl:w-3/6 2xl:w-2/6 shadow-2xl rounded-lg bg-[#007025]">
+    <>
+
+    <div className={`min-h-[190vh] w-[70vw] mx-auto sm:min-w-[100vw] shadow-2xl ${theme === 'light' ? 'bg-gray-300 text-black' : 
+    'bg-gray-950 text-white'} flex flex-col justify-center items-center`}>
+   
+
+<h1 className={`text-2xl text-center sm:text-3xl font-bold mb-16 ${theme === 'light' ? 'text-black' :
+   'text-white'}`}>We Are Proud To Have
+   Our B2B Partners From The Following Countries</h1>
+<div className="flag-bar">
+
+
+
+<Carousel   plugins={[
+    Autoplay({
+      delay: 1200,
+    }),
+  ]} className="max-w-[100vw] md:max-w-[68vw] text-center">
+      <CarouselContent className="w-full">
+        {flags.map(({flag,country,id}) => (
+          <CarouselItem key={id} className="basis-1/2 md:basis-1/3 lg:basis-1/3">
+            <div className="p-1 w-80 sm:w-96">
+              <div className="bg-transparent  border-none shadow-none">
+                <div className="flex bg-transparent text-center space-y-4 flex-col items-center justify-center p-2">
+                  <img src={flag} className="w-10 h-10" alt=""  loading="lazy" />
+                  <h3 className="font-bold">{country}</h3>
+                </div>
+              </div>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+     
+
+    </Carousel>
+
+</div>
+
+    <div className={`h-4/5 p-5 md:w-4/6 lg:w-[40%] xl:w-3/6 2xl:w-2/6 shadow-2xl rounded-lg
+       ${theme === 'light' ? 'bg-[#007025]' : 'bg-gray-800 shadow-2xl'} `}>
       <form
         className="h-full w-full flex flex-col space-y-10 rounded-3xl "
         onSubmit={handleSubmit(onSubmit)}
@@ -217,5 +352,6 @@ const navigate = useNavigate();
       </form>
     </div>
     </div>
+    </>
   );
 }

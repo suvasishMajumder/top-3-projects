@@ -1,9 +1,10 @@
 
 
 import { WishListContext } from '@/Contexts/wishListContext'
-import { log } from 'console';
+
 import React, { useContext } from 'react'
 import WishListItem from './WishListItem';
+import { useNavigate } from 'react-router-dom';
 
 
 const Wishlist = () => {
@@ -11,7 +12,21 @@ const Wishlist = () => {
 
   const {products,setProducts} = useContext(WishListContext);
 
-  console.log(products)
+  // console.log(products)
+
+
+  const navigate = useNavigate()
+
+// const hanldeCheckoutNext = () =>{
+
+
+//   navigate('/checkpage1');
+
+
+// }
+
+
+
 
 
   if (products.length === 0) {
@@ -24,9 +39,7 @@ const Wishlist = () => {
 <>
 
 
-
-
-    <div className='mx-auto min-h-[100vh] w-[100vw]  flex justify-center items-center flex-wrap gap-14 sm:gap-8 md:gap-5'>
+    <div className='mx-auto min-h-[100vh] w-[100vw] flex-col py-10 flex justify-center items-center flex-wrap gap-14 sm:gap-8 md:gap-5'>
      
 {
 
@@ -40,10 +53,22 @@ products.map((elem,index) =>(
 }
 
 
+{/* <button
+    onClick={hanldeCheckoutNext}
+      type="button"
+      className="mb-16 text-white bg-gradient-to-r from-[#228B22] to-[#32CD32]
+       hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#90EE90] font-medium rounded-lg text-lg w-60 mx-auto
+       py-3.5 text-center"
+    >
+     Proceed To Checkout
+    </button> */}
+
 
     </div>
+
+
     </>
   )
 }
 
-export default Wishlist
+export default  Wishlist;

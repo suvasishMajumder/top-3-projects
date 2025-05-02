@@ -1,118 +1,119 @@
-// import { useState } from 'react'
-// import { Button } from "@/components/ui/button"
-// import Navbar from './components/Navbar'
-// import Hero from './components/Hero'
-// import FeaturedProducts from './components/FeaturedProducts'
-// import Veganfoodanddrinks from './components/Veganfoodanddrinks'
-// import User from './components/User'
-// import { RouterProvider } from 'react-router-dom'
 
 
-
-// function App() {
-
-//   const router = createBrowserRouter([
-//     {
-//       path: "/",
-//       element: <><Navbar /><Home /></>
-//     },
- 
-//     {
-//       path: "/about",
-//       element: <><Navbar /><About /></>
-//     },
-//     {
-//       path: "/user/:username",
-//       element: <><Navbar /><User /></>
-//     },
-//   ])
-
-
-//   const [count, setCount] = useState(0)
-
-
-//   const serverSideCode = async() =>{
-
-
-//     alert('This is a function')
-
-//   }
-
-//   return (
-//   <>
-
-
-
-  
-//   <Navbar />
-//   <Hero />
-//       <FeaturedProducts />
-//       <Veganfoodanddrinks />
-     
-//       <RouterProvider router={router} />
-
-  
-//   </>
-//   )
-// }
-
-// export default App
-
-
-
-//New Code:
-
-
-import { useState } from 'react';
+import { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import FeaturedProducts from './components/FeaturedProducts';
-import Veganfoodanddrinks from './components/Veganfoodanddrinks';
-import About from './components/About';
-import User from './components/User';
-import Cart from './components/Cart';
-import Wishlist from './components/Wishlist';
-import VeganCosmetics from './components/VeganCosmetics';
-import VeganPetFood from './components/VeganPetFood';
-import Footer from './components/Footer';
-import Login from './components/Login';
+const Navbar = lazy(()=>import('./components/Navbar'))
+const Hero = lazy(()=>import('./components/Hero'));
+const FeaturedProducts = lazy(()=>import('./components/FeaturedProducts')) 
+const Veganfoodanddrinks = lazy(()=> import('./components/Veganfoodanddrinks'))
+const About = lazy(()=>import('./components/About'))
+const User = lazy(()=>import('./components/User'))
+const Cart = lazy(()=>import('./components/Cart'))
+const Wishlist = lazy(()=>import('./components/Wishlist'))
+const VeganCosmetics = lazy(()=>import('./components/VeganCosmetics'));
+const VeganPetFood = lazy(()=>import('./components/VeganPetFood'));
+const Footer = lazy(()=>import('./components/Footer'))
+const Login = lazy(()=>import('./components/Login'))
 import { Toaster } from 'react-hot-toast';
-import SignUp from './components/SignUp';
+const SignUp = lazy(()=>import( './components/SignUp'))
 import { useAuthHook } from './Contexts/AuthContext';
 import { ProductsProvider } from './Contexts/ProductsProvider';
 import { WishListProvider } from './Contexts/wishListContext';
-import AllProducts from './components/AllProducts';
-import ProductDetails from './components/ProductDetails';
-import WishListItem from './components/WishListItem';
-import RegisteredMerchant from './ChildComponents/RegisteredMerchant';
-import CustomerSupport from './ChildComponents/CustomerSupport';
-import Blogs from './ChildComponents/Blogs';
+const AllProducts = lazy(()=> import('./components/AllProducts'))
+const ProductDetails = lazy(()=>import('./components/ProductDetails'))
+const WishListItem = lazy(()=>import('./components/WishListItem'))
+const RegisteredMerchant = lazy(()=>import('./ChildComponents/RegisteredMerchant'));
+const CustomerSupport = lazy(()=>import('./ChildComponents/CustomerSupport'))
+const Blogs = lazy(()=>import('./ChildComponents/Blogs'))
+import propTypes from 'prop-types'
+const ChatAssistant = lazy(()=>import('./ChildComponents/ChatAssistant'))
+const Error404 = lazy(()=>import('./components/Error404'))
+const FaQ = lazy(()=>import( './components/FaQ'));
+import { ThemeContext } from './Contexts/ThemeContext';
+import { SyncLoader } from 'react-spinners';
+import ThemeToggleBar from './resusable_components/ThemeToggleBar';
+import CheckPage1 from './checkoutPages/CheckPage1';
+import CheckPage2 from './checkoutPages/CheckPage2';
+import CheckPage3 from './checkoutPages/CheckPage3';
+const Counter = lazy(()=>import('./Counter'))
 
-import ChatAssistant from './ChildComponents/ChatAssistant';
-import Error404 from './components/Error404';
-import FaQ from './components/FaQ';
 
+const ErrorBoundary = ({children}) =>{
+
+  const [error , setError] = useState(false);
+
+
+  useEffect(()=>{
+
+
+    const handleError = () =>{
+
+setError(true);
+
+    }
+
+window.addEventListener('error',handleError);
+
+
+
+return () =>{
+
+  window.removeEventListener('error',handleError)
+}
+
+
+  },[])
+
+
+return error ? <div className="text-red-600 text-xl text-center">Error{error}</div> : children;
+
+
+}
+
+
+ErrorBoundary.propTypes = {
+
+ children:propTypes.node.isRequired,
+
+}
 
 
 function App() {
 
+
+  const { theme } = useContext(ThemeContext)
+
   const {isSignedIn, setIsSignedIn} = useAuthHook();
+
 
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: (
-        <>
+  <ErrorBoundary>
+        <Suspense fallback={<div className={`font-normal flex justify-center pt-6 gap-6 ${theme === 'light' ? 'text-black' : 'text-white'}
+         text-2xl text-center italic`}>
+Loading...
+<SyncLoader 
+size={15}
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+        </div>}>
+           <>
           <Navbar />
+          <ThemeToggleBar />
           <Hero />
+          <Counter />
           <FeaturedProducts />
           <Veganfoodanddrinks />
           <VeganCosmetics />
           <VeganPetFood />
           <Footer />
-        </>
+         </>
+          </Suspense>
+          </ErrorBoundary>
       ),
     },
 
@@ -121,9 +122,17 @@ function App() {
     {
 path:"/Login",
 element:(
+<ErrorBoundary>
+  <Suspense fallback={<div className='font-bold text-lg text-center italic'>  
+    <SyncLoader 
+size={15}
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
 
+     </div>}>
   <Login />
-
+  </Suspense>
+  </ErrorBoundary>
 )
 
 
@@ -133,9 +142,20 @@ element:(
 
 path:"/SignUp",
 element:(
+<ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
 
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+</div>}>
+<>
   <SignUp />
-
+  </>
+</Suspense>
+</ErrorBoundary>
 )
 
     },
@@ -143,32 +163,68 @@ element:(
     {
       path: "/about",
       element: (
-        <>
+        <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
+ <>
           <Navbar />
+          <ThemeToggleBar />
           <About />
           <Footer />
-        </>
+          </>
+        </Suspense>
+        </ErrorBoundary>
       ),
     },
     {
       path: "/cart",
       element: (
-        <>
+        <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+</div>}>
+   
+          <>
           <Navbar />
+          <ThemeToggleBar />
           <Cart />
     
         </>
+        </Suspense>
+        </ErrorBoundary>
       ),
     },
 
     {
       path: "/wishlist",
       element: (
-        <>
+        <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
+<>
           <Navbar />
+          <ThemeToggleBar />
           <Wishlist />
    
         </>
+        </Suspense>
+        </ErrorBoundary>
       ),
     },
 
@@ -177,14 +233,22 @@ element:(
 
 path:'/product/:id' ,
 element: (
+  <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
 <>
-
 <Navbar />
+<ThemeToggleBar />
 <ProductDetails />
-
-
-
 </>
+</Suspense>
+</ErrorBoundary>
 )
 
     },
@@ -194,12 +258,24 @@ element: (
 
       path:'/wishlistitem/:id' ,
       element: (
+        <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
+
       <>
-      
       <Navbar />
+      <ThemeToggleBar />
       <ProductDetails />
       
       </>
+      </Suspense>
+      </ErrorBoundary>
       )
       
           },
@@ -208,11 +284,23 @@ element: (
 
 path:'/cartitem/:id',
 element:(
+  <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
 <>
 <Navbar />
+<ThemeToggleBar />
 <ProductDetails />
 
 </>
+</Suspense>
+</ErrorBoundary>
 
 )
 
@@ -222,35 +310,148 @@ element:(
     {
       path: "/AllProducts",
       element: (
-        <>
+        <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
+      <>
           <Navbar />
+          <ThemeToggleBar />
           <AllProducts />
           <Footer />
       
         </>
+        </Suspense>
+        </ErrorBoundary>
       ),
     },
     
     {
       path: "/faq",
       element: (
-        <>
+        <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
+     <>
           <Navbar />
+          <ThemeToggleBar />
           <FaQ />
           <Footer />
-      
         </>
+        </Suspense>
+        </ErrorBoundary>
       ),
     },
 
     {
       path: "/user/:username",
       element: (
-        <>
+        <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
+  <>
           <Navbar />
+          <ThemeToggleBar />
           <User />
         </>
+        </Suspense>
+        </ErrorBoundary>
       ),
+    },
+
+    {
+
+      path:'/checkpage1',
+      element: (
+        <ErrorBoundary>
+    <Suspense fallback={<div className='font-bold text-lg text-center italic'>
+      <SyncLoader 
+    size={15}
+    className='pt-6'
+    color={`${theme === 'light' ? 'black' : 'white'}`}
+    />
+    
+    </div>}>
+    <>
+    <Navbar />
+    <ThemeToggleBar />
+    <CheckPage1 />
+    </>
+    </Suspense>
+    </ErrorBoundary>
+      
+      )
+    
+    },
+
+    {
+
+      path:'/checkpage2',
+      element: (
+        <ErrorBoundary>
+    <Suspense fallback={<div className='font-bold text-lg text-center italic'>
+      <SyncLoader 
+    size={15}
+    className='pt-6'
+    color={`${theme === 'light' ? 'black' : 'white'}`}
+    />
+    
+    </div>}>
+    <>
+    <Navbar />
+    <ThemeToggleBar />
+    <CheckPage2 />
+    </>
+    </Suspense>
+    </ErrorBoundary>
+      
+      )
+    
+    },
+
+    {
+
+      path:'/checkpage3',
+      element: (
+        <ErrorBoundary>
+    <Suspense fallback={<div className='font-bold text-lg text-center italic'>
+      <SyncLoader 
+    size={15}
+    className='pt-6'
+    color={`${theme === 'light' ? 'black' : 'white'}`}
+    />
+    
+    </div>}>
+    <>
+    <Navbar />
+    <ThemeToggleBar />
+    <CheckPage3 />
+    </>
+    </Suspense>
+    </ErrorBoundary>
+      
+      )
+    
     },
 
 
@@ -264,7 +465,19 @@ children:[
 
     path:'ChatAssistant',
     element: (
-      <><Navbar /><ChatAssistant /></>
+      <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
+      <><Navbar /> <ThemeToggleBar /><ChatAssistant /></>
+      </Suspense>
+      </ErrorBoundary>
     )
 
   },
@@ -272,11 +485,21 @@ children:[
 
     path:'RegisteredMerchant',
     element: (
-      <>
-      <Navbar />
+      <ErrorBoundary>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'>
+  <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+</div>}>
+<>
+      <Navbar /> <ThemeToggleBar />
             <RegisteredMerchant />
       </>
-
+</Suspense>
+</ErrorBoundary>
     )
 
   },
@@ -284,11 +507,22 @@ children:[
 
     path:'CustomerSupport',
     element: (
+<ErrorBoundary>
+  <Suspense fallback={<div className='font-bold text-lg text-center italic'>
+    <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
 
+  </div>}>
 <>
 <Navbar />
+<ThemeToggleBar />
 <CustomerSupport />
 </>
+</Suspense>
+</ErrorBoundary>
 
    
     )
@@ -298,15 +532,30 @@ children:[
 
     path:'Blogs',
     element: (
+      <ErrorBoundary>
+  <Suspense fallback={<div className='font-bold text-lg text-center italic'>
+    <SyncLoader 
+size={15}
+className='pt-6'
+color={`${theme === 'light' ? 'black' : 'white'}`}
+/>
+
+  </div>}>
 <>
 <Navbar />
+<ThemeToggleBar />
 <Blogs />
 </>
-
+</Suspense>
+</ErrorBoundary>
     
     )
 
   }
+,
+
+
+
 
 
 ]
@@ -320,12 +569,18 @@ children:[
 
   path:'*',
   element:(
-<>
+    <ErrorBoundary>
+  <Suspense fallback={<div className={`font-bold text-lg ${theme === 'light' ? 'text-black' : 'text-white'} text-center italic`}>Loading....</div>}>
+
+  <>
 <Navbar />
+<ThemeToggleBar />
    <Error404 />
+   </>
+</Suspense>
+</ErrorBoundary>
 
 
-</>
 
   )
 
@@ -334,15 +589,19 @@ children:[
 
   ]);
 
+
   return (
     <>
-    <div className="bg-[#e0ffe8]">
+    <div 
+    className={`min-h-[20vh] ${theme === 'light' ? 'bg-[#e0ffe8]' : 'bg-gray-950'}`}
+    >
 <WishListProvider>
     <ProductsProvider >
      <RouterProvider router={router} />
     <Toaster />
     </ProductsProvider>
     </WishListProvider>
+
     </div>
     </>
    

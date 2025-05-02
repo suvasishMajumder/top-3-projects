@@ -3,6 +3,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { auth } from "../Firebase/Firebase" // Adjust the import based on 
+import toast from "react-hot-toast";
 
 
 export const AuthContext = createContext({
@@ -40,19 +41,21 @@ useEffect(() =>{
 const unsubscribe = auth.onAuthStateChanged((user)=>{
 
     try{
-const signedIn = !!user; //converting to Boolean
+const signedIn = !!user; //converting to Boolean . Converts any truthy/falsy value to a strict boolean (true/false),
+
 
 localStorage.setItem("isSignedIn",JSON.stringify(signedIn));
 
 setIsSignedIn(signedIn);
 
 
-console.log("Auth State Changed:" , signedIn ? "Signed In" : "SignedOut")
-console.log(auth)
+// console.log("Auth State Changed:" , signedIn ? "Signed In" : "SignedOut")
+// console.log(auth)
 
 }catch(error){
 
-console.log('Sorry ! Some error occured while signing in with google',error);
+// console.log('Sorry ! Some error occured while signing in with google',error);
+toast.error('Sorry ! Some error occured while signing in with google');
 
 }
 

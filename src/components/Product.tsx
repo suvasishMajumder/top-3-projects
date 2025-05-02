@@ -1,60 +1,15 @@
-// import React from 'react';
-
-// interface PropsType {
-//   id: number;
-//   img: string;
-//   name: string;
-//   price: number;
-//   gluten_free: boolean;
-//   category: string;
-// }
-
-// const Product: React.FC<PropsType> = ({ id, img, name, price, gluten_free, category }) => {
-//   return (
-//     <div className="w-[90%]  mx-auto sm:w-full h-auto rounded-md flex flex-col space-y-3 p-4 bg-lime-200">
-//       <img src={img} alt={name} className="w-full h-40 rounded-lg shadow-lg object-contain" />
-//       <h4 className="text-lg text-black font-semibold">{name}</h4>
-
-
-//       <div className="w-full space-x-10 p-3 flex justify-between items-center">
-//       <p className="text-sm text-gray-800">₹&nbsp;{price}</p>
-//       <a href="" onClick={(e) => e.preventDefault()} className="text-sm px-6 py-2 
-//        bg-blue-600 hover:bg-blue-700
-//        font-semibold text-white underline">See Details</a>
-//       </div>
-    
-//       <p className="text-sm text-gray-600">
-//         {category.toLocaleLowerCase() === "food" && <span>Gluten Free&nbsp;?&nbsp;:&nbsp;{gluten_free ? "Yes" : "No"}</span>}
-//       </p>
-//       <p className="text-sm text-gray-600">Product Category:&nbsp;{category}</p>
-
-//       <button type="button" className="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2">
-//         Add to Wishlist
-//       </button>
-
-//       <button type="button" className="mt-3 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2">
-//         Add to Cart
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Product;
 
 
 
-//New Code
-
-
-import React, { useContext } from 'react';
+import React, { memo, useContext, useState } from 'react';
 import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { auth } from '../Firebase/Firebase'; // Adjust the import based on your Firebase setup
 import toast from 'react-hot-toast';
 import { WishListContext } from '@/Contexts/wishListContext';
 import { Link } from 'react-router-dom';
-import { json } from 'stream/consumers';
-import { log } from 'console';
-import { isArray } from 'util';
+import { ThemeContext } from '@/Contexts/ThemeContext';
+import { CartContext } from '@/Contexts/CartContext';
+
 
 
 
@@ -65,32 +20,37 @@ interface PropsType {
   price: number;
   gluten_free: boolean; //cartProducts
   category: string;
+  FT: boolean;
 }
 
-const Product: React.FC<PropsType> = ({ id, img, name, price, gluten_free, category }) => {
+const Product: React.FC<PropsType> = ({ id, img, name, price, gluten_free, category , FT }) => {
+
+  // console.log('Product Component re-rendered')
+
+const {theme } = useContext(ThemeContext);
+
+  const {products,setProducts} = useContext(WishListContext);
+  const {cartProducts , setCartProducts} = useContext(CartContext);
 
 
-  const {products,setProducts} = useContext(WishListContext)
+  function checkAlreadyExistsInCart(): boolean {
+
+  const result = cartProducts.find((item)=> item.id === id);
+  console.log(result);
+
+if(result){
+
+  toast.error(`The product named ${name} already exists in the Cart`);
+
+  return false;
+
+}else{
+
+return true;
+
+}
 
 
-  function checkAlreadyExistsInCart(temp:any,productData:any): boolean {
-
-    const ID = productData.id;
-
-    for(let i = 0;i<temp.length;i++){
-    
-      if(temp[i].id===ID){
-    
-        toast.error(`Product already exists in the cart. No need to add it again`);
-        return true;
-    
-      }
-    
-      
-    }
-    
-    alert(`Inside the checkAlreadyExistINcart function`)
-    return false;
     
     }
   
@@ -151,12 +111,13 @@ const Product: React.FC<PropsType> = ({ id, img, name, price, gluten_free, categ
 
 
 
-// if(checkAlreadyExistsInCart(temp,productData)){
+if(!(checkAlreadyExistsInCart())){
 
-//   console.warn(`Product already exists in the cart. No need to add it again`)
-//   toast.error(`Product already exists in the cart. No need to add it again`);
-// return;
-// }
+  console.warn(`Product already exists in the cart. No need to add it again`)
+  toast.error(`Product already exists in the cart. No need to add it again`);
+return;
+
+}
 
 
 
@@ -179,9 +140,14 @@ const Product: React.FC<PropsType> = ({ id, img, name, price, gluten_free, categ
       }
 
       // alert('Product added to cart');
-      toast.success('Product added to cart')
+      toast.success('Product added to cart');
+
+      
+
     } catch (error) {
-      console.error("Error adding product to cart: ", error);
+      // console.error("Error adding product to cart: ", error);
+      console.log(error)
+      toast.error('An error occurred while adding the product to your cart.')
       alert('An error occurred while adding the product to your cart.');
     }
   };
@@ -236,32 +202,45 @@ toast.success(`The Item ${name} got added to Wishlist`);
   }
 
   return (
-    <div className="w-[90%] mx-auto sm:w-full h-auto rounded-md flex flex-col space-y-3 p-4 bg-[#EDF6E5]">
+
+    <>
+
+    <div className={`w-[80%] mx-auto sm:w-full h-[65vh] sm:h-auto rounded-md
+     flex flex-col space-y-3 p-4 ${theme === 'light' ? 'bg-[#EDF6E5]' : 'bg-[#121212] border-zinc-100 border-[1px]'}`}>
+
+
+
+                          
     <img
       src={img}
       alt={name}
-      className="w-full h-40 rounded-lg shadow-lg object-contain bg-white"
+loading='lazy'
+      className={`w-full h-40 rounded-lg shadow-lg object-contain ${theme === 'light' ? 'bg-white' : 'bg-[#121212]'}`}
     />
-    <h4 className="text-2xl text-[#175E17] font-semibold">{name}</h4>
+     
+
+
+
+    <h4 className={`text-lg sm:text-2xl text-center ${theme === 'light' ? 'text-[#175E17]' : 'text-white'}  font-semibold`}>{name}</h4>
   
     <div className="w-full space-x-10 p-3 flex justify-between items-center">
-      <p className="text-sm text-[#6C350F]"><b>₹</b>&nbsp;{price}</p>
-      {/* <a
-        href=""
-        onClick={(e) => e.preventDefault()}
-        className="text-sm px-6 py-2 bg-[#87CEEB] hover:bg-blue-500 font-semibold text-white underline rounded-md"
-      >
-        See Details
-      </a> */}
-
-{/* Link */}
+      <p className={`text-sm ${theme === 'light' ? 'text-[#6C350F]' : 'text-zinc-300'} `}><b>₹</b>&nbsp;{price}</p>
+   
 
 <Link
-       to={`/wishlistitem/${id}`}
+       to={`/product/${id}`}
         
         state={{  id,  img, name, price, gluten_free , category,}}
+        /*
+        Here , I am passign the state of the Product.tsx child component is being passed to the 
+        path /product/${id} when the "See Details" link is clicked. The state 
+        object ({ id, img, name, price, gluten_free, category })
+         is passed to the ProductDetails component via React Router's 
+         Link component.
+        */
      
-        className="text-sm px-6 py-2 bg-[#2193C0] hover:bg-blue-500 hover:shadow-xl transition-shadow font-semibold text-white underline hover:no-underline rounded-md"
+        className="text-sm px-3 sm:px-6 py-1 sm:py-2 bg-[#2193C0] hover:bg-blue-500 hover:shadow-xl transition-shadow font-semibold
+         text-white underline hover:no-underline rounded-md"
       >
         See Details
       </Link>
@@ -269,12 +248,13 @@ toast.success(`The Item ${name} got added to Wishlist`);
         {/* here ,  When I will click on the See Details link, only then the state will be passed to the ProductDetails component. */}
     </div>
   
-    <p className="text-sm text-[#8B4513]">
+    <p className={`text-sm ${theme === 'light' ? 'text-[#8B4513]' :'text-zinc-200'}`}>
       {category.toLocaleLowerCase() === "food" && (
         <span className=''><b>Gluten Free</b>&nbsp;?&nbsp;:&nbsp;{gluten_free ? "Yes" : "No"}</span>
       )}
+      {category.toLocaleLowerCase() !== "food" && <span>&nbsp;&nbsp;</span>}
     </p>
-    <p className="text-sm text-[#8B4513]"><b>Product Category:</b>&nbsp;{category}</p>
+    <p className={`text-sm ${theme === 'light' ? 'text-[#8B4513]' : 'text-zinc-200'}`}><b>Product Category:</b>&nbsp;{category}</p>
   
     <button
     onClick={addToWishList}
@@ -298,11 +278,12 @@ toast.success(`The Item ${name} got added to Wishlist`);
 
 
   </div>
+  </>
   
   );
 };
 
-export default Product;
+export default memo(Product);
 
 /*
 1. Description of React:FC<PropTypes> :
