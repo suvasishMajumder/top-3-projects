@@ -1,7 +1,7 @@
 
 
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { auth } from "../Firebase/Firebase" // Adjust the import based on 
 import toast from "react-hot-toast";
 
@@ -21,8 +21,11 @@ return useContext(AuthContext)
 
 }
 
+interface MyProviderProps {
+    children: ReactNode
+  }
 
-export const AuthProvider = ({children}) =>{
+export const AuthProvider = ({children}: MyProviderProps) =>{
 
 const [isSignedIn, setIsSignedIn] = useState(() =>{
 

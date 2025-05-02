@@ -2,12 +2,12 @@ import React, { lazy, memo, useContext, useMemo, useState } from 'react';
 
 // import Product from './Product';
 const Product = lazy(()=>import('./Product'));
-import FeaturedProductsData from '@/assets/data';
+
 import { motion } from 'framer-motion';
 import { ThemeContext } from '@/Contexts/ThemeContext';
 import { useProducts } from '@/Contexts/ProductsProvider';
 import { Carousel , CarouselContent , CarouselItem , CarouselNext , CarouselPrevious } from './ui/carousel';
-import { CartContext } from '@/Contexts/CartContext';
+
 
 interface ProductType {
   FT: boolean;

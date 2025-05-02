@@ -3,7 +3,7 @@
 
 import { CartContext } from '@/Contexts/CartContext';
 import { ThemeContext } from '@/Contexts/ThemeContext';
-import { WishListContext } from '@/Contexts/WishListContext';
+import { WishListContext } from '@/Contexts/wishListContext';
 import { auth } from '@/Firebase/Firebase';
 import { arrayUnion, doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore';
 
