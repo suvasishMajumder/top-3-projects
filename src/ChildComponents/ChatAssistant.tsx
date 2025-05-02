@@ -104,7 +104,8 @@ p-5 placeholder:text-xs sm:placeholder:text-lg w-64 sm:w-96 shadow-xl rounded-xl
 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg
  shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 
  py-2.5 text-center me-2 mb-2 " onClick={(e) => {
-  setQuestionValue(e.target.value = "");
+  const target = e.target as HTMLInputElement;
+  setQuestionValue(target.value = "");
   setAnswer("")
 
 
