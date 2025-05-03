@@ -18,7 +18,7 @@ import { Toaster } from 'react-hot-toast';
 const SignUp = lazy(()=>import( './components/SignUp'))
 import { useAuthHook } from './Contexts/AuthContext';
 import { ProductsProvider } from './Contexts/ProductsProvider';
-import { WishListProvider } from './Contexts/wishListContext';
+import { WishListProvider } from './Contexts/WishListContext';
 const AllProducts = lazy(()=> import('./components/AllProducts'))
 const ProductDetails = lazy(()=>import('./components/ProductDetails'))
 const WishListItem = lazy(()=>import('./components/WishListItem'))
@@ -38,7 +38,7 @@ import CheckPage3 from './checkoutPages/CheckPage3';
 const Counter = lazy(()=>import('./Counter'))
 
 
-const ErrorBoundary = ({children}) =>{
+const ErrorBoundary: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const [error , setError] = useState(false);
 
@@ -83,7 +83,7 @@ function App() {
 
   const { theme } = useContext(ThemeContext)
 
-  const {isSignedIn, setIsSignedIn} = useAuthHook();
+  // const {isSignedIn, setIsSignedIn} = useAuthHook();
 
 
 

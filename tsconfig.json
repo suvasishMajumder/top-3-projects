@@ -48,6 +48,37 @@
 
 //Latest Update: 12/28/2024
 
+// {
+//   "files": [],
+//   "references": [
+//     { "path": "./tsconfig.app.json" },
+//     { "path": "./tsconfig.node.json" }
+//   ],
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     },
+//     "target": "ESNext",
+//     "module": "ESNext",
+//     "jsx": "react-jsx",
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "moduleResolution": "node",
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "resolveJsonModule": true,
+//     "allowSyntheticDefaultImports": true,
+//     "isolatedModules": true,
+//     "noEmit": true
+//   },
+//   "include": ["src"],
+//   "exclude": ["node_modules", "dist"]
+// }
+
+
+//Latest update 3/5/25
+
 {
   "files": [],
   "references": [
@@ -57,20 +88,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
-    "target": "ESNext",
-    "module": "ESNext",
-    "jsx": "react-jsx",
+    "target": "ESNext",                    // modern JS output
+    "module": "ESNext",                    // allow import.meta & dynamic imports
+    "jsx": "react-jsx",                    // use the new JSX transform
     "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": false                        // allow emitting for Vercel build
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
