@@ -9,6 +9,7 @@ import { getAuth, signInWithEmailAndPassword, signInWithPopup } from 'firebase/a
 import React, { memo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { Button } from './ui/button';
 
 const Login = () => {
 
@@ -92,11 +93,11 @@ toast.error('Sorry ! Cannot be signed In');
 
   return (
     <>
-    <div className='min-h-screen min-w-full max-h-[100vh] overflow-y-hidden max-w-[100vw] bg-gray-900
+    <div className='min-h-screen min-w-full max-h-[100vh] overflow-y-hidden max-w-[100vw] bg-gray-950
      flex justify-center items-center '>
-      <div className="loginBox   w-3/4 h-full sm:h-[38rem] sm:w-[28rem] flex flex-col
+      <div className="loginBox border-[1px] shadow-md shadow-white border-white  w-3/4 h-full sm:h-[38rem] sm:w-[28rem] flex flex-col
        items-center justify-center
-       rounded-md bg-gray-700 space-y-10 py-8">
+       rounded-xl bg-gray-950 space-y-10 py-8">
 
 <div className="logo text-white font-bold text-5xl">Login</div>
 
@@ -104,7 +105,7 @@ toast.error('Sorry ! Cannot be signed In');
 <label htmlFor="Email" className='text-white font-bold'>Email:&nbsp;&nbsp;</label>
 <input type="email" placeholder='Enter your Email' 
 onChange={(e) => setEmail(e.target.value)}
-className='w-[98%] h-12 sm:w-[90%] sm:h-8 bg-white rounded-sm'
+className='w-[98%] p-2 h-12 sm:w-[90%] sm:h-8 bg-white rounded-sm'
  name='Email' id='Email'
  value={email}
  required/>
@@ -116,7 +117,7 @@ className='w-[98%] h-12 sm:w-[90%] sm:h-8 bg-white rounded-sm'
 <div className="input-2">
 <label htmlFor="Password" className='text-white font-bold'>Password:&nbsp;&nbsp;</label>
 <input type="password" placeholder='Enter your Password' 
-className='w-[98%] h-12 sm:w-[90%] sm:h-8 bg-white rounded-sm'
+className='w-[98%] p-2 h-12 sm:w-[90%] sm:h-8 bg-white rounded-sm'
 name='Password' id='Password'
 onChange={(e) => setPassword(e.target.value)}
 value={password}
@@ -125,11 +126,11 @@ required/>
 </div>
 
 
-<button onClick={() => signInNormally()} type="button" className="text-white
+<Button onClick={() => signInNormally()} type="button" className="text-white
  bg-blue-700 hover:bg-blue-800 
 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full
  text-sm px-16 sm:px-36 py-4 text-center me-2 mb-2 dark:bg-blue-600
-  dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+  dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</Button>
 
 <hr  className='bg-white h-[0.5px] w-full'/>
 
@@ -143,6 +144,7 @@ focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full
         <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
         <span className='text-white'>Login with Google</span>
     </button>
+   
 </div>
 
 

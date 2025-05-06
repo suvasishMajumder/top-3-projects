@@ -10,7 +10,7 @@ const Stepper = () => {
     console.log(path);
 
 
-    const {theme , toggleTheme} = useContext(ThemeContext)
+    const {theme } = useContext(ThemeContext)
 
   return (
    

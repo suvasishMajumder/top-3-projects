@@ -89,12 +89,12 @@ const sentEmail = async() =>{
 
     try {
       await emailjs.send(Service_id, template_id, Data, user_id);
-      toast.success("Email sent successfully");
+      toast.success("Order Confirmation Sent Successfully");
+      
     } catch (error) {
       console.error(error);
       toast.error("Sorry! Email could not be sent");
     }
-
 
 }
 
