@@ -1,1 +1,1 @@
-export default function RegisteredMerchant(): import("react").JSX.Element;
+export default function RegisteredMerchant(): import("react/jsx-runtime").JSX.Element;

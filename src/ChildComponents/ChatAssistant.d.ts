@@ -1,2 +1,2 @@
-declare function ChatAssistant(): import("react").JSX.Element;
+declare function ChatAssistant(): import("react/jsx-runtime").JSX.Element;
 export default ChatAssistant;

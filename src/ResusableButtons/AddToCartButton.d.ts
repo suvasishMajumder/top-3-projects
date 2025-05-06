@@ -1,3 +1,2 @@
-import React from 'react';
-declare const AddToCartButton: () => React.JSX.Element;
+declare const AddToCartButton: () => import("react/jsx-runtime").JSX.Element;
 export default AddToCartButton;

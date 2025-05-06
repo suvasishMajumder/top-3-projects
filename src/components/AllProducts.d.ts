@@ -1,3 +1,2 @@
-import React from 'react';
-declare const AllProducts: () => React.JSX.Element;
+declare const AllProducts: () => import("react/jsx-runtime").JSX.Element;
 export default AllProducts;

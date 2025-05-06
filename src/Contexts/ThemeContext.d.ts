@@ -6,5 +6,5 @@ export declare const ThemeContext: import("react").Context<ThemeContextType>;
 import { ReactNode } from "react";
 export declare const ThemeProvider: ({ children }: {
     children: ReactNode;
-}) => import("react").JSX.Element;
+}) => import("react/jsx-runtime").JSX.Element;
 export {};

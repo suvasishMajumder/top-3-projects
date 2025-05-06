@@ -1,3 +1,2 @@
-import React from 'react';
-declare const ProductDetails: () => React.JSX.Element;
+declare const ProductDetails: () => import("react/jsx-runtime").JSX.Element;
 export default ProductDetails;

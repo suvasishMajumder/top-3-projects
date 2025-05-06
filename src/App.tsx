@@ -35,6 +35,7 @@ import ThemeToggleBar from './resusable_components/ThemeToggleBar';
 import CheckPage1 from './checkoutPages/CheckPage1';
 import CheckPage2 from './checkoutPages/CheckPage2';
 import CheckPage3 from './checkoutPages/CheckPage3';
+import Stepper from './Stepper';
 const Counter = lazy(()=>import('./Counter'))
 
 
@@ -379,6 +380,68 @@ color={`${theme === 'light' ? 'black' : 'white'}`}
       ),
     },
 
+
+
+//     {
+
+//       path:'/checkout',
+//       element:(
+//         <ErrorBoundary>
+//         <>
+//           <Navbar />
+//           <Stepper /> {/* Render Stepper only once here */}
+//           <ThemeToggleBar />
+//         </>
+//       </ErrorBoundary>
+//       ),
+//       children:[
+
+// {
+
+//   path:'checkpage1',
+// element:(
+// <ErrorBoundary>
+// <Suspense fallback={<div>Loading...</div>}>
+// <CheckPage1 />
+// </Suspense>
+// </ErrorBoundary>
+
+// )
+
+// },
+// {
+
+//   path:'checkpage',
+// element:(
+// <ErrorBoundary>
+// <Suspense fallback={<div>Loading...</div>}>
+// <CheckPage1 />
+// </Suspense>
+// </ErrorBoundary>
+
+// )
+
+// },
+// {
+
+//   path:'checkpage1',
+// element:(
+// <ErrorBoundary>
+// <Suspense fallback={<div>Loading...</div>}>
+// <CheckPage1 />
+// </Suspense>
+// </ErrorBoundary>
+
+// )
+
+// }
+
+//       ]
+
+//     }
+
+
+
     {
 
       path:'/checkpage1',
@@ -394,6 +457,9 @@ color={`${theme === 'light' ? 'black' : 'white'}`}
     </div>}>
     <>
     <Navbar />
+    <Stepper />
+
+    
     <ThemeToggleBar />
     <CheckPage1 />
     </>
@@ -419,6 +485,7 @@ color={`${theme === 'light' ? 'black' : 'white'}`}
     </div>}>
     <>
     <Navbar />
+    <Stepper />
     <ThemeToggleBar />
     <CheckPage2 />
     </>
@@ -444,6 +511,7 @@ color={`${theme === 'light' ? 'black' : 'white'}`}
     </div>}>
     <>
     <Navbar />
+    <Stepper />
     <ThemeToggleBar />
     <CheckPage3 />
     </>

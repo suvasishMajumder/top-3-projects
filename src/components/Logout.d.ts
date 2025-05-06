@@ -1,3 +1,2 @@
-import React from 'react';
-declare const Logout: () => React.JSX.Element;
+declare const Logout: () => import("react/jsx-runtime").JSX.Element;
 export default Logout;

@@ -1,3 +1,2 @@
-import React from 'react';
-declare const WishListButton: () => React.JSX.Element;
+declare const WishListButton: () => import("react/jsx-runtime").JSX.Element;
 export default WishListButton;

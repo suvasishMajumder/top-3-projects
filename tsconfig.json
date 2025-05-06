@@ -78,21 +78,17 @@
 
 
 //Latest update 3/5/25
-
 {
   "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
+  "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
-    "target": "ESNext",                    // modern JS output
-    "module": "ESNext",                    // allow import.meta & dynamic imports
-    "jsx": "react-jsx",                    // use the new JSX transform
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -101,8 +97,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "noEmit": false                        // allow emitting for Vercel build
+    "noEmit": false
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

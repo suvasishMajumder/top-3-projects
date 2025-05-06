@@ -1,6 +1,5 @@
-import React from "react";
 declare const Filter: ({ data, setFilteredData }: {
     data: any;
     setFilteredData: any;
-}) => React.JSX.Element;
+}) => import("react/jsx-runtime").JSX.Element;
 export default Filter;

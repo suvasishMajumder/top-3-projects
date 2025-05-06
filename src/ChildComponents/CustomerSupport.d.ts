@@ -1,3 +1,2 @@
-import React from 'react';
-declare function CustomerSupport(): React.JSX.Element;
+declare function CustomerSupport(): import("react/jsx-runtime").JSX.Element;
 export default CustomerSupport;

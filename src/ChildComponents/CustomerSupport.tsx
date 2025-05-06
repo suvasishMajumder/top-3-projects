@@ -35,7 +35,7 @@ function CustomerSupport() {
 <div className="w-[100%] md:w-[80%] min-h-[70%] space-y-10 p-2">
 
 <h3 className={`text-4xl font-extrabold ${theme === 'light' ? 'text-green-800' : 'text-lime-400 '} text-center`}>Have Any Enquiry ? Feel Free to connect to us</h3>
-<p className={`text-[0.95rem] ${theme === 'light' ? ' text-black' : 'text-white'}`}>
+<p className={`text-center text-[0.95rem] ${theme === 'light' ? ' text-black' : 'text-white'}`}>
 At Vegan Bazaar, we pride ourselves on providing exceptional customer service to ensure a seamless shopping experience for our valued customers. Our dedicated call center team is always ready to assist you with any inquiries, whether it's about product details, order tracking, returns, or general support. Available during extended business hours, our friendly and knowledgeable representatives strive to resolve your concerns promptly and professionally, leaving you with complete peace of mind.
 
 For added convenience, we also offer email customer support, allowing you to reach out to us at any time. Whether you have a detailed query or simply need guidance, our email support team is committed to providing clear, thorough, and timely responses. We understand the importance of quick and effective communication, and our team goes the extra mile to ensure that your questions are answered accurately and with care.

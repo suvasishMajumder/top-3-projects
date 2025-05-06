@@ -1,4 +1,4 @@
 declare function ThemeToggler({ handleChangeTheme }: {
     handleChangeTheme: () => void;
-}): import("react").JSX.Element;
+}): import("react/jsx-runtime").JSX.Element;
 export default ThemeToggler;

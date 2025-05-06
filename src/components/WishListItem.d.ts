@@ -6,5 +6,5 @@ declare const _default: React.MemoExoticComponent<({ id, img, name, price, glute
     price: any;
     gluten_free: any;
     category: any;
-}) => React.JSX.Element>;
+}) => import("react/jsx-runtime").JSX.Element>;
 export default _default;

@@ -1,3 +1,2 @@
-import React from 'react';
-declare const Blogs: () => React.JSX.Element;
+declare const Blogs: () => import("react/jsx-runtime").JSX.Element;
 export default Blogs;

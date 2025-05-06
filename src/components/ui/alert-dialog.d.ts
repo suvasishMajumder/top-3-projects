@@ -6,11 +6,11 @@ declare const AlertDialogPortal: React.FC<AlertDialogPrimitive.AlertDialogPortal
 declare const AlertDialogOverlay: React.ForwardRefExoticComponent<Omit<AlertDialogPrimitive.AlertDialogOverlayProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 declare const AlertDialogContent: React.ForwardRefExoticComponent<Omit<AlertDialogPrimitive.AlertDialogContentProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 declare const AlertDialogHeader: {
-    ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element;
+    ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 declare const AlertDialogFooter: {
-    ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element;
+    ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
     displayName: string;
 };
 declare const AlertDialogTitle: React.ForwardRefExoticComponent<Omit<AlertDialogPrimitive.AlertDialogTitleProps & React.RefAttributes<HTMLHeadingElement>, "ref"> & React.RefAttributes<HTMLHeadingElement>>;

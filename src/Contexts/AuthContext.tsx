@@ -6,13 +6,13 @@ import { auth } from "../Firebase/Firebase" // Adjust the import based on
 import toast from "react-hot-toast";
 
 
-export const AuthContext = createContext({
-
-isSignedIn: false,
-setIsSignedIn: () => {}, //placeholder function
-
-
-})
+export const AuthContext = createContext<{
+  isSignedIn: boolean;
+  setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+  isSignedIn: false,
+  setIsSignedIn: () => {}, // placeholder function
+});
 
 
 export const useAuthHook = () =>{
@@ -55,7 +55,7 @@ setIsSignedIn(signedIn);
 // console.log("Auth State Changed:" , signedIn ? "Signed In" : "SignedOut")
 // console.log(auth)
 
-}catch(error){
+}catch{
 
 // console.log('Sorry ! Some error occured while signing in with google',error);
 toast.error('Sorry ! Some error occured while signing in with google');

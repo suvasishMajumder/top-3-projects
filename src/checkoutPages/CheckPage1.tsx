@@ -472,6 +472,7 @@ text-center mx-auto justify-center pb-20 space-y-10 flex-col items-center "
 
             <Button
               type="submit"
+              disabled={cartProducts.length === 0}
               // onClick={handleNavigate}
               className={`${
                 theme === "light"
@@ -483,6 +484,8 @@ text-center mx-auto justify-center pb-20 space-y-10 flex-col items-center "
               <strong>Next</strong>
               <FaLongArrowAltRight />
             </Button>
+
+{cartProducts.length === 0 && <p className="text-red-700 text-lg">Add Products to the Cart before moving to next page</p>}
 
             <Input
               type="reset"
@@ -507,7 +510,8 @@ space-y-4 flex flex-col  items-center
           {list?.map((item, index) => {
             return (
               <div
-                className="flex flex-col font-bold p-4 text-center sm:flex-row space-y-5 border-[1px] border-blue-700 items-center sm:space-x-6"
+                className="flex flex-col font-bold p-4 text-center sm:flex-row space-y-5 border-[1px]
+                 border-blue-700 items-center sm:space-x-6"
                 key={index}
               >
                 <h3 className="">{item.name}</h3> <span className="">x</span>

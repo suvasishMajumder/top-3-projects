@@ -10,5 +10,5 @@ export declare const useAuthHook: () => {
 interface MyProviderProps {
     children: ReactNode;
 }
-export declare const AuthProvider: ({ children }: MyProviderProps) => import("react").JSX.Element;
+export declare const AuthProvider: ({ children }: MyProviderProps) => import("react/jsx-runtime").JSX.Element;
 export {};

@@ -1,3 +1,2 @@
-import React from "react";
-declare const About: () => React.JSX.Element;
+declare const About: () => import("react/jsx-runtime").JSX.Element;
 export default About;

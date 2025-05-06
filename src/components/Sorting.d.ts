@@ -1,3 +1,2 @@
-import React from 'react';
-declare const Sortin: () => React.JSX.Element;
+declare const Sortin: () => import("react/jsx-runtime").JSX.Element;
 export default Sortin;
