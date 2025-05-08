@@ -456,6 +456,7 @@ color={`${theme === 'light' ? 'black' : 'white'}`}
     
     </div>}>
     <>
+    
     <Navbar />
     <Stepper />
 

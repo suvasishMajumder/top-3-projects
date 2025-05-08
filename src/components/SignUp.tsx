@@ -64,6 +64,23 @@ toast.error('Sorry ! Cannot be Signed Up');
       toast.error('You are already logged in.');
       return;
     }
+
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation pattern
+if(!emailPattern.test(email)){
+
+  toast.error(`${email} is not a valid Email Address`);
+  return;
+
+}
+
+
+if(!(password.length >= 8)){
+
+  toast.error(`The Password Must Be At Least 8 characters`);
+  return;
+
+}
   
     try {
       const auth = getAuth();
@@ -92,9 +109,9 @@ toast.error('Sorry ! Cannot be Signed Up');
     <>
     <div className='min-h-screen min-w-full max-h-[100vh] overflow-y-hidden max-w-[100vw] bg-gray-950
      flex justify-center items-center '>
-      <div className="signUpBox w-3/4 h-full sm:h-[38rem] sm:w-[28rem] flex flex-col
+      <div className="signUpBox w-full h-full sm:h-[38rem] sm:w-[28rem] flex flex-col
        items-center justify-center
-       rounded-md bg-gray-950 border-white border-[1px] rounded-xl shadow-md space-y-10 py-8">
+       bg-gray-950 border-white border-[1px] rounded-xl shadow-md space-y-10 py-8">
 
 <div className="logo text-white font-bold text-5xl">Sign Up</div>
 
@@ -126,10 +143,15 @@ required/>
 <Button onClick={() => signInNormally()} type="button" className="text-white
  bg-blue-700 hover:bg-blue-800 
 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full
- text-sm px-16 sm:px-36 py-4 text-center me-2 mb-2 dark:bg-blue-600
+ text-sm px-24 sm:px-36 py-6 text-center me-2 mb-2 dark:bg-blue-600
   dark:hover:bg-blue-700 dark:focus:ring-blue-800">SignUp</Button>
 
 <hr  className='bg-white h-[0.5px] w-full'/>
+
+
+<div className="text-white cursor-pointer transition-all font-medium flex flex-col text-center">
+  Already Have An Account or Existing User ?&nbsp;&nbsp;
+<span className='underline font-normal hover:text-blue-700' onClick={()=>navigate('/Login')} >Login / Sign In</span></div>
 
 
 

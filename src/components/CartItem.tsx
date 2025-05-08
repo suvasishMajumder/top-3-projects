@@ -84,7 +84,7 @@ setCartProducts(result);
 
   return (
     <>
-    <div className='w-full md:w-[90%] sm:w-full p-8 sm:p-4 border rounded-md shadow-md bg-gray-100'>
+    <div className='w-[80%] md:w-[90%] sm:w-[70%] p-8 sm:p-4 border rounded-md shadow-md bg-gray-100'>
       <img src={img} alt={name} className='w-full h-32 object-contain mb-3' loading='lazy' />
       <h4 className='text-lg font-semibold'>{name}</h4>
       <p className='text-sm text-gray-800'>₹&nbsp;{price}</p>

@@ -2,13 +2,17 @@ import { Check, House } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ClockLoader } from "react-spinners";
 import { motion } from "framer-motion";
 import { ThemeContext } from "@/Contexts/ThemeContext";
+import { AuthContext } from "@/Contexts/AuthContext";
+
 
 const CheckPage3 = () => {
 
+
+const {isSignedIn} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -17,9 +21,11 @@ const CheckPage3 = () => {
   const { list, selectVal, total , formData , random } = location.state || {};
 
 
+
+  if(isSignedIn){
   const {Email , FirstName , LastName , address , phNumber , pincode , selectCountry , shippingMethod
   } = formData;
-
+  }
 
 
 
@@ -30,13 +36,24 @@ const CheckPage3 = () => {
       
       setLoading(false);
 
-    }, 6000);
+    }, 6000)
+
 
   },[])
 
 const [loading , setLoading] = useState(true);
 
 const { theme } = useContext(ThemeContext)
+
+
+if(!isSignedIn){
+
+  return (
+
+    <Navigate to={'/Login'} replace={true}/>
+  )
+
+}
 
 if(loading){
 
@@ -49,6 +66,8 @@ return (
  </div>
 )
 }
+
+
 
 
   return (

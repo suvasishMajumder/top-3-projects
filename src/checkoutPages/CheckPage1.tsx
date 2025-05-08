@@ -12,11 +12,13 @@ import {
 
 import { Button } from "../components/ui/button";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "@/Contexts/CartContext";
 import { ThemeContext } from "@/Contexts/ThemeContext";
 import { Minus, Plus } from "lucide-react";
 import { useForm, Controller } from "react-hook-form";
+import toast from "react-hot-toast";
+import { AuthContext } from "@/Contexts/AuthContext";
 
 const CheckPage1 = () => {
   const countries = useMemo(
@@ -51,6 +53,7 @@ const CheckPage1 = () => {
   );
 
   const { theme } = useContext(ThemeContext);
+  const {isSignedIn} = useContext(AuthContext);
 
   const defaultValues = {
     FirstName: "",
@@ -98,6 +101,8 @@ const CheckPage1 = () => {
   //   e.preventDefault();
   // };
 
+
+
   const handleNavigate = (formData) => {
     navigate("/checkpage2", { state: { list, total, formData } });
   };
@@ -142,6 +147,22 @@ const CheckPage1 = () => {
   const clearSetQuantity = () => {
     setList(cartProducts);
   };
+
+  
+
+  
+ 
+  
+  if(!isSignedIn){
+
+    return (
+<Navigate to='/Login' replace={true}/>
+
+    )
+
+
+  
+  }
 
   return (
     <>
@@ -540,7 +561,7 @@ space-y-4 flex flex-col  items-center
             className={`${
               theme === "light"
                 ? "text-zinc-300 bg-gray-950"
-                : "bg-zinc-300 text-gray-950"
+                : "bg-zinc-300 hover:bg-gray-400 text-gray-950"
             }`}
           >
             Clear Quantity

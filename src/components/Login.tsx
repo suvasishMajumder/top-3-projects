@@ -64,6 +64,23 @@ toast.error('Sorry ! Cannot be signed In');
       toast.error('You are already logged in.');
       return;
     }
+
+    
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation pattern
+if(!emailPattern.test(email)){
+
+  toast.error(`${email} is not a valid Email Address`);
+  return;
+
+}
+
+
+if(!(password.length >= 8)){
+
+  toast.error(`The Password Must Be At Least 8 characters`);
+  return;
+
+}
   
     try {
       const auth = getAuth();
@@ -95,7 +112,7 @@ toast.error('Sorry ! Cannot be signed In');
     <>
     <div className='min-h-screen min-w-full max-h-[100vh] overflow-y-hidden max-w-[100vw] bg-gray-950
      flex justify-center items-center '>
-      <div className="loginBox border-[1px] shadow-md shadow-white border-white  w-3/4 h-full sm:h-[38rem] sm:w-[28rem] flex flex-col
+      <div className="loginBox border-[1px] shadow-md shadow-white border-white  w-full h-full sm:h-[38rem] sm:w-[28rem] flex flex-col
        items-center justify-center
        rounded-xl bg-gray-950 space-y-10 py-8">
 
@@ -129,12 +146,13 @@ required/>
 <Button onClick={() => signInNormally()} type="button" className="text-white
  bg-blue-700 hover:bg-blue-800 
 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full
- text-sm px-16 sm:px-36 py-4 text-center me-2 mb-2 dark:bg-blue-600
+ text-sm px-24 sm:px-36 py-6 sm:py-4 text-center me-2 mb-2 dark:bg-blue-600
   dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</Button>
 
 <hr  className='bg-white h-[0.5px] w-full'/>
 
-
+<div className="text-white cursor-pointer transition-all font-medium flex flex-col text-center">For Creating New Account ?&nbsp;&nbsp;
+<span className='underline font-normal hover:text-blue-700' onClick={()=>navigate('/SignUp')} >Register or SignUp</span></div>
 
 <div className="flex items-center justify-center h-[30vh] sm:h-screen dark:bg-gray-800">
     <button onClick={() =>signInWithGoogle()} className="px-4 py-2 border flex gap-2

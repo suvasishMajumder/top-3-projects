@@ -4,7 +4,7 @@ import { LuQrCode } from "react-icons/lu";
 import { BsFillWalletFill } from "react-icons/bs";
 import { FaCcMastercard, FaLongArrowAltRight } from "react-icons/fa";
 import { Button } from "@/components/ui/Button";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/Contexts/ThemeContext";
@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription , AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useForm } from "react-hook-form";
 import emailjs from "emailjs-com";
+import { AuthContext } from "@/Contexts/AuthContext";
 
 
 
@@ -24,18 +25,21 @@ const CheckPage2 = () => {
 const [popup , setShowPopUp] = useState(false);
 const [random , setRandom] = useState<any>('')
 
-
-    const navigate = useNavigate();
+const {isSignedIn} = useContext(AuthContext);
+  
 
 
     const location = useLocation();
     const { list , total , formData } = location.state || {name:'Empty'};
 
-    const {Email , FirstName , LastName , address , phNumber , pincode , selectCountry , shippingMethod
-    } = formData;
-  
+
 
   
+
+  if(isSignedIn){
+    const {Email , FirstName , LastName , address , phNumber , pincode , selectCountry , shippingMethod
+    } = formData;
+  }
 
 
 useEffect(() => {
@@ -121,6 +125,7 @@ const [selectVal , setSelectVal] = useState('cod-pure');
 useEffect(()=>{
 
 
+  if(isSignedIn){
   toast.success(`You Selected ${selectVal.toUpperCase()} As Your Payment Method`, {
     style: {
       border: '1px solid #713200',
@@ -131,10 +136,21 @@ useEffect(()=>{
       primary: '#713200',
       secondary: '#FFFAEE',
     },
-  });
+  })};
 
 },[selectVal])
 
+
+
+const navigate = useNavigate();
+
+
+if(!isSignedIn){
+
+return (
+<Navigate to='/Login' replace={true}/>
+)
+}
 
   return (
     <>
@@ -191,7 +207,8 @@ text-white flex flex-col space-y-8  justify-center items-center">
 
 <AlertDialog>
   <AlertDialogTrigger>
-    <Button className="bg-blue-800 text-white cursor-pointer w-72 sm:w-96 flex space-x-1.5">
+    <Button className="bg-blue-800 text-white cursor-pointer
+     w-72 sm:w-96 flex space-x-1.5 hover:bg-blue-600">
       <strong>Confirm Order</strong>
       <FaLongArrowAltRight />
     </Button>

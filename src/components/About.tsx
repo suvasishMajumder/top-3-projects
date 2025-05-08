@@ -72,6 +72,8 @@ const About = () => {
               </div>
             </div>
             <div className="mt-12 md:mt-0">
+
+              
               <img
                 src={img2}
                 alt="An image showing Vegan Bazar's mission of promoting a vegan lifestyle."

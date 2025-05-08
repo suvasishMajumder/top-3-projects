@@ -138,7 +138,7 @@ const Cart: React.FC = () => {
     );
   }
 
-  if (!isSignedIn) {
+  if (!loading && !isSignedIn) {
     return (
       <>
         <div className="flex flex-col justify-center items-center space-y-6">
@@ -181,7 +181,7 @@ focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2
   }
 
   // Render empty cart message
-  if (cartInfo.length === 0) {
+  if (cartInfo.length === 0 ) {
     return (
       <div className="text-center text-semibold text-red-700">
         Your cart is empty
