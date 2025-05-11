@@ -127,7 +127,7 @@ if(loading){
     <>
     
 
-<div className={`container ${theme === 'light' ? 'bg-[#007025]' : 'bg-gray-800'}  min-w-[100vw] pb-32 `}>
+<div className={`container ${theme === 'light' ? 'bg-[#007025]' : 'bg-gray-800'}   min-w-[100vw] pb-32 `}>
 
     {/* Text Product Search */}
 <div className={` textSearch ${isTextSearchVisible ? 'block' : 'hidden'}  w-[100vw] overflow-x-hidden h-24 bg-sky-400  flex justify-center items-center `}>
@@ -188,7 +188,7 @@ active:text-orange-500 hover:text-red-500 transition-all cursor-pointer' />
   <input 
     type="checkbox" 
     value="" 
-    className="sr-only peer" 
+    className="sr-only  peer" 
     onClick={() => {
     
       setIsTextSearchVisible(prev => !prev);
@@ -203,7 +203,8 @@ active:text-orange-500 hover:text-red-500 transition-all cursor-pointer' />
     after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
   <span className={`ms-3 text-sm font-medium ${theme==='light' ? 'text-gray-900' : 'text-white'} dark:text-gray-300`}>{isTextSearchVisible ?
    "Switch to Voice Search" : "Switch To Text Search"}</span>
-</label><br /><br /><br /><br /><br />
+</label>
+<br /><br /><br /><br /><br />
 
 
 

@@ -1,0 +1,15 @@
+# robots.txt for Veganbazaar (React + Firebase + TypeScript) project
+
+User-agent: *
+# Block access to your source code
+Disallow: /src/
+# Block access to your Firebase config folder
+Disallow: /src/Firebase/
+# Block access to environment variables file
+Disallow: /.env
+
+# Allow everything else
+Allow: /
+
+# (Optional) If you have a sitemap, uncomment and update the URL below:
+# Sitemap: https://yourdomain.com/sitemap.xml

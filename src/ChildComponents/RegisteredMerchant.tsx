@@ -164,11 +164,12 @@ const navigate = useNavigate();
 
     <>
 
-    <div className={`min-h-[190vh] w-[70vw] mx-auto sm:min-w-[100vw] shadow-2xl ${theme === 'light' ? 'bg-gray-300 text-black' : 
+    <div className={`min-h-[190vh] w-[95vw] space-y-14 mx-auto sm:min-w-[100vw]
+     shadow-2xl ${theme === 'light' ? 'bg-gray-300 text-black' : 
     'bg-gray-950 text-white'} flex flex-col justify-center items-center`}>
    
 
-<h1 className={`text-2xl text-center sm:text-3xl font-bold mb-16 ${theme === 'light' ? 'text-black' :
+<h1 className={`text-2xl text-center sm:text-3xl font-bold  ${theme === 'light' ? 'text-black' :
    'text-white'}`}>We Are Proud To Have
    Our B2B Partners From The Following Countries</h1>
 <div className="flag-bar">
@@ -259,7 +260,7 @@ const navigate = useNavigate();
             id="Last Name"
           />
           {errors.lastName && (
-            <p className="text-[#FFDF19] text-sm">{errors.lastName.message}</p>
+            <p role="alert" className="text-[#FFDF19] text-sm">{errors.lastName.message}</p>
           )}
         </div>
 
@@ -282,7 +283,7 @@ const navigate = useNavigate();
             id="email"
           />
           {errors.email && (
-            <p className="text-[#FFDF19] text-sm">{errors.email.message}</p>
+            <p role="alert" className="text-[#FFDF19] text-sm">{errors.email.message}</p>
           )}
         </div>
 
@@ -309,7 +310,7 @@ const navigate = useNavigate();
             id="ContactNo"
           />
           {errors.ContactNo && (
-            <p className="text-[#FFDF19] text-sm">{errors.ContactNo.message}</p>
+            <p role="alert" className="text-[#FFDF19] text-sm">{errors.ContactNo.message}</p>
           )}
         </div>
 
@@ -336,7 +337,7 @@ const navigate = useNavigate();
             id="description"
           />
           {errors.description && (
-            <p className="text-[#FFDF19] text-sm">
+            <p role="alert" className="text-[#FFDF19] text-sm">
               {errors.description.message}
             </p>
           )}
