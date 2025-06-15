@@ -17,11 +17,33 @@ import { CartContext } from "@/Contexts/CartContext";
 import { ThemeContext } from "@/Contexts/ThemeContext";
 import { Minus, Plus } from "lucide-react";
 import { useForm, Controller } from "react-hook-form";
-import toast from "react-hot-toast";
 import { AuthContext } from "@/Contexts/AuthContext";
 
+
+interface ICountries{
+
+  id:number;
+  country:string;
+  phoneCode:string;
+  capital:string;
+
+}
+
+
+interface IDefaultValues{
+
+  FirstName: string;
+  LastName: string;
+  selectCountry: string;
+  address: string;
+  pincode: string;
+  Email: string;
+  shippingMethod: string;
+  phNumber: string;
+}
+
 const CheckPage1 = () => {
-  const countries = useMemo(
+  const countries:ICountries[] = useMemo(
     () => [
       { id: 1, country: "European Union", phoneCode: "+32", capital: "Brussels"},
       { id: 2, country: "UK", phoneCode: "+44", capital: "London" },
@@ -55,7 +77,7 @@ const CheckPage1 = () => {
   const { theme } = useContext(ThemeContext);
   const {isSignedIn} = useContext(AuthContext);
 
-  const defaultValues = {
+  const defaultValues:IDefaultValues = {
     FirstName: "",
     LastName: "",
     selectCountry: "",
@@ -76,7 +98,7 @@ const CheckPage1 = () => {
     defaultValues,
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data:any) => {
     // event.preventDefault()
     setFormData(data);
     handleNavigate(data);
@@ -134,8 +156,8 @@ const CheckPage1 = () => {
   };
 
   useEffect(() => {
-    let temp = 0;
-    let item = 0;
+    let temp:number = 0;
+    // const item:number = 0;
 
     for (let i = 0; i < list.length; i++) {
       temp = temp + list[i].quantity * list[i].price;
@@ -421,9 +443,7 @@ text-center mx-auto justify-center pb-20 space-y-10 flex-col items-center "
                     <Select
                       value={field.value}
                       onValueChange={field.onChange}
-                      className={`${
-                        theme === "light" ? "text-gray-950" : "text-zinc-200"
-                      }`}
+                    
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select Your Country" />

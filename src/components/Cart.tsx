@@ -6,7 +6,7 @@ const CartItem = lazy(() => import("./CartItem"));
 import { useAuthHook } from "@/Contexts/AuthContext";
 import toast from "react-hot-toast";
 import { onAuthStateChanged } from "firebase/auth";
-const SignUp = lazy(() => import("./SignUp"));
+// const SignUp = lazy(() => import("./SignUp"));
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "@/Contexts/ThemeContext";
 import { CartContext } from "@/Contexts/CartContext";
@@ -26,7 +26,7 @@ interface ProductType {
 const Cart: React.FC = () => {
   const [cartInfo, setCartInfo] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [counter, setCounter] = useState<number>(0);
+  // const [counter, setCounter] = useState<number>(0);
   const [isAuthStateLoading, setIsAuthStateLoading] = useState<boolean>(true);
   // const [sum, setSum] = useState<number>(0); // State to store the total price
 
@@ -34,7 +34,7 @@ const Cart: React.FC = () => {
 
   const { theme } = useContext(ThemeContext);
 
-  const { cartProducts, setCartProducts } = useContext(CartContext);
+  const {  setCartProducts } = useContext(CartContext);
 
   const hanldeCheckoutNext = () => {
     navigate("/checkpage1");

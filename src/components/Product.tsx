@@ -1,11 +1,11 @@
 
 
 
-import React, { memo, useContext, useState } from 'react';
+import React, { memo, useContext } from 'react';
 import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { auth } from '../Firebase/Firebase'; // Adjust the import based on your Firebase setup
 import toast from 'react-hot-toast';
-import { WishListContext } from '@/Contexts/wishListContext';
+import { WishListContext } from '@/Contexts/WishListContext';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '@/Contexts/ThemeContext';
 import { CartContext } from '@/Contexts/CartContext';
@@ -14,13 +14,14 @@ import { CartContext } from '@/Contexts/CartContext';
 
 
 interface PropsType {
-  id: number;
+  id: number | string;
   img: string;
   name: string;
   price: number;
   gluten_free: boolean; //cartProducts
   category: string;
-  FT: boolean;
+  FT?: boolean;
+  quantity?: number; // Add quantity as optional for compatibility
 }
 
 const Product: React.FC<PropsType> = ({ id, img, name, price, gluten_free, category , FT }) => {
@@ -30,7 +31,7 @@ const Product: React.FC<PropsType> = ({ id, img, name, price, gluten_free, categ
 const {theme } = useContext(ThemeContext);
 
   const {products,setProducts} = useContext(WishListContext);
-  const {cartProducts , setCartProducts} = useContext(CartContext);
+  const {cartProducts } = useContext(CartContext);
 
 
   function checkAlreadyExistsInCart(): boolean {
@@ -187,7 +188,7 @@ if(checkAlreadyExistsInWishList()){
 
 
 setProducts([...products,{
-  id,
+  id: typeof id === 'number' ? id : Number(id),
   img,
   name,
   price,

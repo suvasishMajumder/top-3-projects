@@ -8,6 +8,7 @@ interface PropsType {
     quantity: number;
     gluten_free: boolean;
     category: string;
+    cart?: any;
 }
 declare const _default: React.NamedExoticComponent<PropsType>;
 export default _default;

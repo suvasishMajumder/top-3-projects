@@ -3,7 +3,7 @@
 
 import { CartContext } from '@/Contexts/CartContext';
 import { ThemeContext } from '@/Contexts/ThemeContext';
-import { WishListContext } from '@/Contexts/wishListContext';
+import { WishListContext } from '@/Contexts/WishListContext';
 import { auth } from '@/Firebase/Firebase';
 import { arrayUnion, doc, getDoc, getFirestore, setDoc, updateDoc } from 'firebase/firestore';
 
@@ -164,7 +164,7 @@ setCartProducts(result);
    
 
   } catch (error) {
-    toast.error("Error adding product to cart: ");
+    toast.error("Error adding product to cart: ",error);
     toast.error('An error occurred while adding the product to your cart.');
   }
 };

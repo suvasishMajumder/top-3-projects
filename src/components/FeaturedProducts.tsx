@@ -1,4 +1,4 @@
-import React, { lazy, memo, useContext, useMemo, useState } from 'react';
+import React, { lazy, memo, useContext, useMemo} from 'react';
 
 // import Product from './Product';
 const Product = lazy(()=>import('./Product'));
@@ -9,23 +9,23 @@ import { useProducts } from '@/Contexts/ProductsProvider';
 import { Carousel , CarouselContent , CarouselItem , CarouselNext , CarouselPrevious } from './ui/carousel';
 
 
-interface ProductType {
-  FT: boolean;
-  id: string;
-  img: string;
-  category: string;
-  price: number;
-  name: string;
-  gluten_free: boolean;
+// interface ProductType {
+//   FT: boolean;
+//   id: string;
+//   img: string;
+//   category: string;
+//   price: number;
+//   name: string;
+//   gluten_free: boolean;
 
-}
+// }
 
 const FeaturedProducts = () => {
 
 
 const {theme } = useContext(ThemeContext);
 
-  const {products, loading} = useProducts();
+  const {products} = useProducts();
 
 
 
@@ -67,7 +67,7 @@ viewport={{once:true}}
             price={item.price}
             gluten_free={item.gluten_free}
             category={item.category}
-
+FT={item?.FT || false}
           />
         ))}
       </div>

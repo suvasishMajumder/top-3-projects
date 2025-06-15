@@ -1,7 +1,7 @@
 
 
 
-import { WishListContext } from '@/Contexts/wishListContext'
+import { WishListContext } from '@/Contexts/WishListContext'
 import React, { memo, useContext } from 'react'
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';

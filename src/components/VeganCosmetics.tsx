@@ -37,7 +37,7 @@ useEffect(()=>{
     return <div className="text-white text-xl">Loading.....</div>;
   }
 
-
+console.log(filteredData[1])
   
   return (
     <>
@@ -68,6 +68,7 @@ viewport={{once:true}}
           price={item.price}
           gluten_free={item.gluten_free}
           category={item.category}
+          FT={item.FT}
         />
       ))}
     </div>

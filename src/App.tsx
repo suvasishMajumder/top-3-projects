@@ -93,7 +93,8 @@ function App() {
       path: "/",
       element: (
   <ErrorBoundary>
-        <Suspense fallback={<div className={`font-normal flex justify-center pt-6 gap-6 ${theme === 'light' ? 'text-black' : 'text-white'}
+        <Suspense fallback={<div className={`font-normal flex justify-center pt-6 gap-6 
+        ${theme === 'light' ? 'text-black' : 'text-white'}
          text-2xl text-center italic`}>
 Loading...
 <SyncLoader 
@@ -312,15 +313,9 @@ color={`${theme === 'light' ? 'black' : 'white'}`}
       path: "/AllProducts",
       element: (
         <ErrorBoundary>
-<Suspense fallback={<div className='font-bold text-lg text-center italic'>
-
-  <SyncLoader 
-size={15}
-className='pt-6'
-color={`${theme === 'light' ? 'black' : 'white'}`}
-/>
-
-</div>}>
+<Suspense fallback={<div className='font-bold text-lg text-center italic'><SyncLoader size={15} className='pt-6' color={`${theme === 'light' ? 'black' : 'white'}`}/></div>}>
+     
+     
       <>
           <Navbar />
           <ThemeToggleBar />

@@ -1,18 +1,16 @@
 
-import { BsCashCoin } from "react-icons/bs";
-import { LuQrCode } from "react-icons/lu";
-import { BsFillWalletFill } from "react-icons/bs";
-import { FaCcMastercard, FaLongArrowAltRight } from "react-icons/fa";
-import { Button } from "@/components/ui/Button";
+
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/Contexts/ThemeContext";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import toast from "react-hot-toast";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription , AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { useForm } from "react-hook-form";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
+  AlertDialogDescription , AlertDialogFooter, AlertDialogHeader,
+   AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import emailjs from "emailjs-com";
 import { AuthContext } from "@/Contexts/AuthContext";
 
@@ -22,8 +20,8 @@ const CheckPage2 = () => {
 
 
   const { theme } = useContext(ThemeContext);
-const [popup , setShowPopUp] = useState(false);
-const [random , setRandom] = useState<any>('')
+const [popup , setShowPopUp] = useState<boolean>(false);
+const [random , setRandom] = useState<string>('');
 
 const {isSignedIn} = useContext(AuthContext);
   
@@ -36,10 +34,13 @@ const {isSignedIn} = useContext(AuthContext);
 
   
 
-  if(isSignedIn){
-    const {Email , FirstName , LastName , address , phNumber , pincode , selectCountry , shippingMethod
+  // if(isSignedIn){
+  //   const {Email , FirstName , LastName , address , phNumber , pincode , selectCountry , shippingMethod
+  //   } = formData;
+  // }
+    const {Email , FirstName , LastName  , phNumber  , shippingMethod
     } = formData;
-  }
+
 
 
 useEffect(() => {

@@ -1,21 +1,21 @@
 
 
-import { WishListContext } from '@/Contexts/wishListContext'
+import { WishListContext } from '@/Contexts/WishListContext'
 
 import React, { useContext } from 'react'
 import WishListItem from './WishListItem';
-import { useNavigate } from 'react-router-dom';
+
 
 
 const Wishlist = () => {
 
 
-  const {products,setProducts} = useContext(WishListContext);
+  const {products } = useContext(WishListContext);
 
   // console.log(products)
 
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
 // const hanldeCheckoutNext = () =>{
 
@@ -43,7 +43,7 @@ const Wishlist = () => {
      
 {
 
-products.map((elem,index) =>(
+products?.map((elem,index) =>(
 
  <WishListItem key={index} id={elem.id} img={elem.img} name={elem.name} price={elem.price} 
  gluten_free={elem.gluten_free} category={elem.category}  />

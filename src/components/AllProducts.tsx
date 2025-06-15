@@ -12,6 +12,7 @@ import { RiResetLeftLine } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 import { ThemeContext } from '@/Contexts/ThemeContext';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
+import Sort from './Sort';
 
 
 
@@ -27,7 +28,7 @@ const {theme } = useContext(ThemeContext)
 
 
 
-const { transcript, browserSupportsSpeechRecognition , resetTranscript } = useSpeechRecognition();
+const { transcript, resetTranscript } = useSpeechRecognition();
 const startListening = () => SpeechRecognition.startListening({ continuous: true , language:'en-In'});
 
 const abortlisteneing = () => SpeechRecognition.abortListening();
@@ -38,6 +39,7 @@ const [searchProduct, filterredSearchedProduct] = useState('');
 const [voiceSearchedProduct, filteredvoiceSearchedProduct] = useState(transcript);
 const [finalProductList, setFinalProductList] = useState(filteredData);
 const [mainProductList, setMainProductList] = useState(finalProductList);
+const [mainProductListFinal, setMainProductListFinal] = useState(mainProductList);
 
 
 const newList = useMemo(()=>{
@@ -58,8 +60,8 @@ const [isVoiceSearchVisible, setIsVoiceSearchVisible] = useState(false);
 
 const handleChange = (event) =>{
 
-  let data = event.target.value;
-  let newData = data.toLowerCase();
+  const data = event.target.value;
+  const newData = data.toLowerCase();
 
   // filterredSearchedProduct(event.target.value);
 
@@ -120,6 +122,8 @@ if(loading){
   </div>
 
 }
+
+console.log(mainProductListFinal)
 
   return (
 
@@ -240,7 +244,11 @@ onChange={(e)=>setCategory(e.target.value)} id="category">
 
 
 <Suspense fallback={<div className='italic text-center font-bold text-lg'>Loading...</div>}>
+
+
     <Filter data={products} setFilteredData={setFilteredData}  />
+    <Sort data={mainProductList} setMainProductListFinal={setMainProductListFinal}/>
+  
     </Suspense>
 
     <div className='w-[100vw] hidden sm:grid md:grid-cols-2 xl:grid-cols-4 gap-5 px-5 '>
@@ -249,11 +257,11 @@ onChange={(e)=>setCategory(e.target.value)} id="category">
       
 {
 
-mainProductList.length === 0 ? (<div className="text-red-600 text-xl text-center w-[100vw]">No Products Found with such criteria....</div>) :
+mainProductListFinal.length === 0 ? (<div className="text-red-600 text-xl text-center w-[100vw]">No Products Found with such criteria....</div>) :
 
-mainProductList.map((item,index) =>(
+mainProductListFinal.map((item) =>(
 
-<Product key={item.id} id={item.id} name={item.name} img={item.img} price={item.price} gluten_free={item.gluten_free} 
+<Product FT={item.FT} key={item.id} id={item.id} name={item.name} img={item.img} price={item.price} gluten_free={item.gluten_free} 
 category={item.category} />
 
     ))
@@ -271,7 +279,7 @@ return (
 
           <CarouselItem key={index}>
            
-           <Product key={item.id} id={item.id} name={item.name} img={item.img} price={item.price} gluten_free={item.gluten_free} 
+           <Product FT={item.FT} key={item.id} id={item.id} name={item.name} img={item.img} price={item.price} gluten_free={item.gluten_free} 
 category={item.category} />
 
 

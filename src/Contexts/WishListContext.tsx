@@ -15,6 +15,7 @@ interface Product {
   price: number;
   gluten_free: boolean;
   category: string;
+  quantity?:number;
 }
 
 

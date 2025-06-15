@@ -22,10 +22,10 @@ const {isSignedIn} = useContext(AuthContext);
 
 
 
-  if(isSignedIn){
+
   const {Email , FirstName , LastName , address , phNumber , pincode , selectCountry , shippingMethod
   } = formData;
-  }
+  
 
 
 

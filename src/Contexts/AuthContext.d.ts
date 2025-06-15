@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 export declare const AuthContext: import("react").Context<{
     isSignedIn: boolean;
-    setIsSignedIn: () => void;
+    setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }>;
 export declare const useAuthHook: () => {
     isSignedIn: boolean;
-    setIsSignedIn: () => void;
+    setIsSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 interface MyProviderProps {
     children: ReactNode;

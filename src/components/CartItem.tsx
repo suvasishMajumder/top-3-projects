@@ -3,7 +3,7 @@
 
 /********************* New Component  *******************************/
 
-import React, { memo, useContext, useState } from 'react';
+import React, { memo, ReactNode, useContext, useState } from 'react';
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { doc, updateDoc, arrayRemove } from 'firebase/firestore';
@@ -20,9 +20,10 @@ interface PropsType {
   quantity: number;
   gluten_free: boolean;
   category: string;
+  cart?:  any ; // Optional prop for additional cart info
 }
 
-const CartItem: React.FC<PropsType> = ({ id, img, name, price, gluten_free, quantity, category }) => {
+const CartItem: React.FC<PropsType> = ({ id, img, name, price, gluten_free, quantity, category , cart }) => {
 
 
   const {cartProducts, setCartProducts} = useContext(CartContext);
@@ -71,7 +72,7 @@ setCartProducts(result);
 
 
     } catch (error) {
-      // console.error('Error removing product from cart:', error);
+      console.error('Error removing product from cart:', error);
       toast.error('Failed to remove the item from your cart.');
     }
   };
